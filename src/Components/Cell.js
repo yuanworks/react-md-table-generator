@@ -4,21 +4,26 @@ import * as tableActions from '../redux/actions/tableActions';
 
 export default function Cell({ rowIndex, columnIndex }) {
 
-  const [ editing, setEditing ] = useState(false);
-  
   const value = useSelector(state => state.table.getIn([ 'rows', rowIndex, columnIndex ]));
   
-  const dispatch = useDispatch();
-  const editCell = value => dispatch(tableActions.editCell(rowIndex, columnIndex, value));
+  const editingCell = useSelector(state => (
+    state.table.get('editingRow') === rowIndex && state.table.get('editingColumn') === columnIndex
+  ));
+  
+  const dispatch         = useDispatch();
+  const editValue        = value => dispatch(tableActions.editValue(rowIndex, columnIndex, value));
+  const setEditingCell   = () => dispatch(tableActions.setEditingCell(rowIndex, columnIndex));
+  const clearEditingCell = () => dispatch(tableActions.setEditingCell());
+  const moveEditingCell  = direction => dispatch(tableActions.moveEditingCell(direction));
 
   const renderEditing = () => {
     return (
       <input
         autoFocus
         value={value}
-        onChange={(e) => editCell(e.target.value)}
-        onBlur={() => setEditing(false)}
-        onKeyPress={handleKeyPress}
+        onChange={(e) => editValue(e.target.value)}
+        onBlur={clearEditingCell}
+        onKeyDown={handleKeyPress}
       />
     );
   }
@@ -30,12 +35,16 @@ export default function Cell({ rowIndex, columnIndex }) {
   const handleKeyPress = e => {
     switch(e.key) {
       case 'Enter':
-        setEditing(false);
+        moveEditingCell('down');
+        break;
+
+      case 'Tab':
+        moveEditingCell('right');
         break;
     }
   }
 
   return (
-    <div className='cell' onClick={() => setEditing(true)}>{editing ? renderEditing() : renderCell() }</div>
+    <div className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</div>
   )
 }

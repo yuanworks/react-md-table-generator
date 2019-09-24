@@ -9,11 +9,13 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] Push the initial commit
 - [x] Delete the default README.md
 - [x] Make a Todo List
-- [ ] Add Redux
+- [x] Add Redux
 - [x] Add SASS support
-- [ ] Add immutable
+- [x] Add immutable
 
 ### Tasks
-- [ ] Create "table" JSON object
+- [x] Create "table" JSON object
 - [ ] Save redux to local storage
-- [ ] Create redux tasks
+- [x] Create redux boilerplate
+- [x] Keyboard control (experimental)
+- [ ] css for input + cell similar
