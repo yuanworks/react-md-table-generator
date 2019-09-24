@@ -1,27 +1,21 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import * as tableActions from '../redux/actions/tableActions';
 
-export default function Cell({ initialValue }) {
+export default function Cell({ rowIndex, columnIndex }) {
 
-  const [ value, setValue ]     = useState(initialValue);
   const [ editing, setEditing ] = useState(false);
   
-  const test = useSelector(state => state.table.get('test'));
+  const value = useSelector(state => state.table.getIn([ 'rows', rowIndex, columnIndex ]));
   const dispatch = useDispatch();
-  
-  const testDispatch = value => dispatch({
-    type    : 'test',
-    payload : value
-  });
-
-  console.log('test', test);
+  const editCell = value => dispatch(tableActions.editCell(rowIndex, columnIndex, value));
 
   const renderEditing = () => {
     return (
       <input
         autoFocus
         value={value}
-        onChange={(e) => { setValue(e.target.value); testDispatch(e.target.value) }}
+        onChange={(e) => editCell(e.target.value)}
         onBlur={() => setEditing(false)}
         onKeyPress={handleKeyPress}
       />

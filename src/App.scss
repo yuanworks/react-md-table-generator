@@ -28,15 +28,15 @@
 
 .cell {
   border: 1px solid gray;
-  border-top: none;
-  border-left: none;
+  //border-top: none;
+  //border-left: none;
   display: inline-block;
-  width: 100px;
+  width: 200px;
   height: 100%;
 
   &:first-child {
-    border-top: 1px;
-    border-left: 1px;  
+    //border-top: 1px solid gray;
+    //border-left: 1px solid gray;
   }
 }
 
