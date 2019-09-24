@@ -4,7 +4,8 @@ import Row from './Row';
 
 export default function Table() {
 
-  const rows = useSelector(state => state.table.get('rows'));
+  const rowCount = useSelector(state => state.table.get('rowCount'));
+  const rows = Array(rowCount).fill(0);
 
   return (
     <div className='table'>

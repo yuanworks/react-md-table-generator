@@ -7,6 +7,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const [ editing, setEditing ] = useState(false);
   
   const value = useSelector(state => state.table.getIn([ 'rows', rowIndex, columnIndex ]));
+  
   const dispatch = useDispatch();
   const editCell = value => dispatch(tableActions.editCell(rowIndex, columnIndex, value));
 

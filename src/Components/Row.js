@@ -4,8 +4,9 @@ import Cell from './Cell';
 
 export default function Row({ rowIndex }) {
 
-  const columns = useSelector(state => state.table.get('rows').get(rowIndex));
-
+  const columnCount = useSelector(state => state.table.get('columnCount'));
+  const columns = Array(columnCount).fill(0);
+  
   return (
     <div className='row'>
       { columns && columns.map((_, i) => (
