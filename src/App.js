@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
-import Cell from './Components/Cell';
+import Cell from './components/Cell';
 
 function App() {
   return (
