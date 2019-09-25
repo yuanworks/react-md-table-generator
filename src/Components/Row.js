@@ -1,10 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import * as tableSelectors from '../redux/selectors/tableSelectors';
 import Cell from './Cell';
 
 export default function Row({ rowIndex }) {
 
-  const columnCount = useSelector(state => state.table.get('columnCount'));
+  const columnCount = useSelector(tableSelectors.getColumnCount());
   const columns = Array(columnCount).fill(0);
   
   return (

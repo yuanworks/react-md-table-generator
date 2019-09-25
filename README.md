@@ -18,4 +18,8 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [ ] Save redux to local storage
 - [x] Create redux boilerplate
 - [x] Keyboard control (experimental)
-- [ ] css for input + cell similar
+- [x] css for input + cell similar
+- [x] markdown table components
+- [ ] import table to redux
+- [ ] create default mock table
+
