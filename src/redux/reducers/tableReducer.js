@@ -4,7 +4,8 @@ const initialState = Map({
 
   editingRow    : null,
   editingColumn : null,
-
+  hasHeadingRow : true,
+  
   rowCount    : 3,
   columnCount : 3,
 

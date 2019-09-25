@@ -11,7 +11,7 @@ export default function MarkdownSeparatorRow() {
   ));
 
   return (
-    <div className='row'>
+    <div>
       { columns }
     </div>
   )

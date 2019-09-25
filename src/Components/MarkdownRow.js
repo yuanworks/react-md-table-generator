@@ -11,7 +11,7 @@ export default function MarkdownRow({ rowIndex }) {
   ));
 
   return (
-    <div className='row'>
+    <div>
       { columns }
     </div>
   )
