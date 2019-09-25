@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as tableActions from '../redux/actions/tableActions';
+import * as tableSelectors from '../redux/selectors/tableSelectors';
 
 export default function Cell({ rowIndex, columnIndex }) {
 
-  const value = useSelector(state => state.table.getIn([ 'rows', rowIndex, columnIndex ]));
+  const value = useSelector(tableSelectors.getCellValue(rowIndex, columnIndex));
   
   const editingCell = useSelector(state => (
     state.table.get('editingRow') === rowIndex && state.table.get('editingColumn') === columnIndex

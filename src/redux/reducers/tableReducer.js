@@ -36,8 +36,6 @@ export default function table(state = initialState, action) {
       const rowCount      = state.get('rowCount');
       const columnCount   = state.get('columnCount');
       
-      console.log(editingRow, editingColumn, rowCount, columnCount);
-      
       switch (payload.direction) {
         case 'down':
           return state.merge({
@@ -48,8 +46,8 @@ export default function table(state = initialState, action) {
         case 'right':
           return state.merge({
             editingRow    : (editingColumn + 1) % columnCount,
-            editingRow    : (editingRow + Math.floor((editingColumn + 1) / columnCount)) % rowCount,
-          })
+            editingColumn : (editingRow + Math.floor((editingColumn + 1) / columnCount)) % rowCount,
+          });
       }
     }
 
