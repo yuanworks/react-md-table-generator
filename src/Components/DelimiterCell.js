@@ -5,9 +5,16 @@ import * as TableSelectors from '../redux/selectors/TableSelectors';
 export default function DelimiterCell({ columnIndex }) {
   
   const lastColumn = useSelector(TableSelectors.isLastColumn(columnIndex));
-  
+  const maxCellLength = useSelector(TableSelectors.getMaxCellLength());
+
+  let delimiters = '---';
+
+  if (maxCellLength) {
+    delimiters = Array(maxCellLength).fill('-').join('');
+  }
+
   return (
-    <span>| --- { lastColumn && '|'}</span>
+    <span>| {delimiters} { lastColumn && '|'}</span>
   );
 
 }

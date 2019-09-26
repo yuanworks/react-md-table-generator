@@ -1,4 +1,4 @@
-import { List, Map, fromJS } from "immutable";
+import { Map, fromJS } from "immutable";
 import * as TableUtil from "../../utils/TableUtil";
 
 import { TABLE_SAMPLE } from '../../constants/TableConstants';
@@ -12,7 +12,7 @@ const initialState = Map({
   rowCount    : 3,
   columnCount : 3,
 
-  //maxCellLength : 11,
+  maxCellLength : 3,
   //currentMax    : Map({ row: null, column: null }),
   //previousMax   : Map({ row: null, column: null }),
 
@@ -22,9 +22,7 @@ const initialState = Map({
   //   List([ 'First Row 1', 'First Row 2', 'First Row 3', ]),
   //   List([ 'Second Row 1', 'Second Row 2', 'Second Row 3', ]),
   // ]),
-})
-
-
+});
 
 export default function table(state = initialState, action) {
   const { type, payload } = action;
@@ -63,8 +61,16 @@ export default function table(state = initialState, action) {
     }
 
     case 'TABLE_IMPORT_DATA':
-      const tableRows = TableUtil.parseMarkdown(action.payload.markdown);
-      return state;
+      let { rows, maxCellLength } = TableUtil.parseMarkdown(action.payload.markdown);
+      rows = fromJS(rows);
+      const { rowCount, columnCount } = TableUtil.getDimensions(rows);
+
+      return state.merge({
+        rows: fromJS(rows),
+        rowCount,
+        columnCount,
+        maxCellLength,
+      });
 
     default:
       return state;

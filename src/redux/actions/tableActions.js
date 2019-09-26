@@ -12,3 +12,8 @@ export const moveEditingCell = direction => ({
   type    : 'TABLE_MOVE_EDITING_CELL',
   payload : { direction },
 });
+
+export const importMarkdownTable = markdown => ({
+  type    : 'TABLE_IMPORT_DATA',
+  payload : { markdown },
+});

@@ -21,6 +21,7 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] Keyboard control (experimental)
 - [x] css for input + cell similar
 - [x] markdown table components
-- [ ] import table to redux
+- [x] parse markdown table to Array
+- [x] add original whitespaces
 - [ ] create default mock table
-
+- [ ] calculate whitespace on changes

@@ -20,7 +20,7 @@ export default function Cell({ rowIndex, columnIndex }) {
       <input
         type='text'
         autoFocus
-        value={value}
+        value={value || ''}
         onChange={(e) => editValue(e.target.value)}
         onBlur={clearEditingCell}
         onKeyDown={handleKeyPress}
