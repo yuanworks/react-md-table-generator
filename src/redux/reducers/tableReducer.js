@@ -1,5 +1,7 @@
-import { List, Map } from "immutable";
+import { List, Map, fromJS } from "immutable";
 import * as TableUtil from "../../utils/TableUtil";
+
+import { TABLE_SAMPLE } from '../../constants/TableConstants';
 
 const initialState = Map({
 
@@ -14,12 +16,15 @@ const initialState = Map({
   //currentMax    : Map({ row: null, column: null }),
   //previousMax   : Map({ row: null, column: null }),
 
-  rows: List([
-    List([ 'Heading 1', 'Heading 2', 'Heading 3', ]),
-    List([ 'First Row 1', 'First Row 2', 'First Row 3', ]),
-    List([ 'Second Row 1', 'Second Row 2', 'Second Row 3', ]),
-  ]),
+  rows: fromJS(TableUtil.parseMarkdown(TABLE_SAMPLE)),
+  // rows: List([
+  //   List([ 'Heading 1', 'Heading 2', 'Heading 3', ]),
+  //   List([ 'First Row 1', 'First Row 2', 'First Row 3', ]),
+  //   List([ 'Second Row 1', 'Second Row 2', 'Second Row 3', ]),
+  // ]),
 })
+
+
 
 export default function table(state = initialState, action) {
   const { type, payload } = action;
@@ -58,7 +63,7 @@ export default function table(state = initialState, action) {
     }
 
     case 'TABLE_IMPORT_DATA':
-      const tableRows = TableUtil.importMarkdownTable(action.payload.markdown);
+      const tableRows = TableUtil.parseMarkdown(action.payload.markdown);
       return state;
 
     default:

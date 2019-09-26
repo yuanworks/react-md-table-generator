@@ -18,7 +18,7 @@ export default function MarkdownTable() {
   for (let i = 0; i < rowCount; i++) {
     rows.push(<MarkdownRow key={i} rowIndex={i} />);
     
-    (hasHeadingRow && i === 0) && rows.push(<DelimiterRow key={i} />);
+    (hasHeadingRow && i === 0) && rows.push(<DelimiterRow key='delimiter' />);
   }
 
   return (
