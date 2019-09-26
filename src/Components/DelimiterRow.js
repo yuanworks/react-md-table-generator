@@ -1,13 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import MarkdownSeparatorCell from './MarkdownSeparatorCell';
+import DelimiterCell from './DelimiterCell';
 
-export default function MarkdownSeparatorRow() {
+export default function DelimiterRow() {
 
   let columnCount = useSelector(state => state.table.get('columnCount'));
   
   const columns = Array(columnCount).fill().map((_, i) => (
-    <MarkdownSeparatorCell key={i} columnIndex={i} />
+    <DelimiterCell key={i} columnIndex={i} />
   ));
 
   return (

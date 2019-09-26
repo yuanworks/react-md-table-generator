@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import Row from './Row';
-import * as tableSelectors from '../redux/selectors/tableSelectors';
+import * as TableSelectors from '../redux/selectors/TableSelectors';
 
 export default function Table() {
 
-  const rowCount = useSelector(tableSelectors.getRowCount());
+  const rowCount = useSelector(TableSelectors.getRowCount());
   const rows = Array(rowCount).fill(0);
 
   return (

@@ -12,6 +12,7 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] Add Redux
 - [x] Add SASS support
 - [x] Add immutable
+- [ ] Research where to deploy the Production build
 
 ### Tasks
 - [x] Create "table" JSON object

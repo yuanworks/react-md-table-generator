@@ -1,23 +1,24 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import * as tableActions from '../redux/actions/tableActions';
-import * as tableSelectors from '../redux/selectors/tableSelectors';
+import * as TableActions from '../redux/actions/TableActions';
+import * as TableSelectors from '../redux/selectors/TableSelectors';
 
 export default function Cell({ rowIndex, columnIndex }) {
 
-  const value = useSelector(tableSelectors.getCellValue(rowIndex, columnIndex));
+  const value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
   
-  const editingCell = useSelector(tableSelectors.isEditingCell(rowIndex, columnIndex));
+  const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
   
   const dispatch         = useDispatch();
-  const editValue        = value => dispatch(tableActions.editValue(rowIndex, columnIndex, value));
-  const setEditingCell   = () => dispatch(tableActions.setEditingCell(rowIndex, columnIndex));
-  const clearEditingCell = () => dispatch(tableActions.setEditingCell());
-  const moveEditingCell  = direction => dispatch(tableActions.moveEditingCell(direction));
+  const editValue        = value => dispatch(TableActions.editValue(rowIndex, columnIndex, value));
+  const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
+  const clearEditingCell = () => dispatch(TableActions.setEditingCell());
+  const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
 
   const renderEditing = () => {
     return (
       <input
+        type='text'
         autoFocus
         value={value}
         onChange={(e) => editValue(e.target.value)}

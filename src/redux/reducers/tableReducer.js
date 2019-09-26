@@ -1,4 +1,5 @@
 import { List, Map } from "immutable";
+import * as TableUtil from "../../utils/TableUtil";
 
 const initialState = Map({
 
@@ -8,6 +9,10 @@ const initialState = Map({
   
   rowCount    : 3,
   columnCount : 3,
+
+  //maxCellLength : 11,
+  //currentMax    : Map({ row: null, column: null }),
+  //previousMax   : Map({ row: null, column: null }),
 
   rows: List([
     List([ 'Heading 1', 'Heading 2', 'Heading 3', ]),
@@ -51,6 +56,10 @@ export default function table(state = initialState, action) {
           });
       }
     }
+
+    case 'TABLE_IMPORT_DATA':
+      const tableRows = TableUtil.importMarkdownTable(action.payload.markdown);
+      return state;
 
     default:
       return state;

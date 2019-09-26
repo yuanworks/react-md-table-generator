@@ -1,14 +1,16 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import * as tableSelectors from '../redux/selectors/tableSelectors';
+import * as TableSelectors from '../redux/selectors/TableSelectors';
 
 import MarkdownRow from './MarkdownRow';
-import MarkdownSeparatorRow from './MarkdownSeparatorRow';
+import DelimiterRow from './DelimiterRow';
+
+import '../styles/MarkdownTable.scss';
 
 export default function MarkdownTable() {
 
-  const rowCount = useSelector(tableSelectors.getRowCount());
+  const rowCount = useSelector(TableSelectors.getRowCount());
   const hasHeadingRow = useSelector(state => state.table.get('hasHeadingRow'));
   
   const rows = [];
@@ -16,7 +18,7 @@ export default function MarkdownTable() {
   for (let i = 0; i < rowCount; i++) {
     rows.push(<MarkdownRow key={i} rowIndex={i} />);
     
-    (hasHeadingRow && i === 0) && rows.push(<MarkdownSeparatorRow key={i} />);
+    (hasHeadingRow && i === 0) && rows.push(<DelimiterRow key={i} />);
   }
 
   return (
