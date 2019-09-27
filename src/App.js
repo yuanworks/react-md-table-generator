@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import logo from './logo.svg';
 import './App.scss';
-import Table from './components/Table.js';
+import Table from './components/Table';
 import MarkdownTable from './components/MarkdownTable';
 
 import * as TableActions from './redux/actions/TableActions';
