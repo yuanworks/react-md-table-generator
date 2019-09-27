@@ -25,3 +25,4 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] add original whitespaces
 - [ ] create default mock table
 - [ ] calculate whitespace on changes
+- [ ] whitespace should be row-by-row basis, not whole table
