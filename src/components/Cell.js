@@ -47,7 +47,10 @@ export default function Cell({ rowIndex, columnIndex }) {
     }
   }
 
-  return (
-    <div className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</div>
+  const isHeader = (rowIndex === 0);
+
+  return (isHeader
+    ? <th className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
+    : <td className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
   )
 }
