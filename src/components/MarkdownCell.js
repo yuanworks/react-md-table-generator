@@ -6,10 +6,10 @@ export default function MarkdownCell({ rowIndex, columnIndex }) {
 
   const value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
   const lastColumn = useSelector(TableSelectors.isLastColumn(columnIndex));
-  const maxColumnLength = useSelector(TableSelectors.getMaxColumnLength(columnIndex));
+  let maxColumnLength = useSelector(TableSelectors.getMaxColumnLength(columnIndex));
 
-  console.log(maxColumnLength, rowIndex);
-  
+  maxColumnLength = Math.max(maxColumnLength, 3);
+
   let extraSpaces;
   const cellLength = (value && value.length) || 0;
 

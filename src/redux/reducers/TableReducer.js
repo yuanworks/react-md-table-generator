@@ -1,7 +1,5 @@
-import { Map, fromJS } from "immutable";
+import { Map, List, fromJS } from "immutable";
 import * as TableUtil from "../../utils/TableUtil";
-
-import { TABLE_SAMPLE } from '../../constants/TableConstants';
 
 const initialState = Map({
 
@@ -12,15 +10,12 @@ const initialState = Map({
   columnCount : 3,
 
   maxColumnLength : Map(),
-  //currentMax    : Map({ row: null, column: null }),
-  //previousMax   : Map({ row: null, column: null }),
 
-  rows: fromJS(TableUtil.parseMarkdown(TABLE_SAMPLE)),
-  // rows: List([
-  //   List([ 'Heading 1', 'Heading 2', 'Heading 3', ]),
-  //   List([ 'First Row 1', 'First Row 2', 'First Row 3', ]),
-  //   List([ 'Second Row 1', 'Second Row 2', 'Second Row 3', ]),
-  // ]),
+  rows: List([
+    List(['','','']),
+    List(['','','']),
+    List(['','','']),
+  ]),
 });
 
 export default function table(state = initialState, action) {
@@ -30,7 +25,11 @@ export default function table(state = initialState, action) {
 
     case 'TABLE_EDIT_CELL_VALUE': {
       const { rowIndex, columnIndex, value } = payload;
-      return state.setIn(['rows', rowIndex, columnIndex], value);
+
+      state = state.setIn(['rows', rowIndex, columnIndex], value);
+      const maxLength = TableUtil.calculateMaxLength(state.get('rows'), columnIndex);
+
+      return state.setIn(['maxColumnLength', columnIndex], maxLength);
     }
 
     case 'TABLE_SET_EDITING_CELL': {

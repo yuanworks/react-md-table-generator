@@ -9,7 +9,7 @@ export default function DelimiterCell({ columnIndex }) {
 
   let delimiters = '---';
 
-  if (maxColumnLength) {
+  if (maxColumnLength > 3) {
     delimiters = Array(maxColumnLength).fill('-').join('');
   }
 

@@ -21,5 +21,5 @@ export const isEditingCell = (rowIndex, columnIndex) => function(state) {
 }
 
 export const getMaxColumnLength = rowIndex => function(state) {
-  return state.table.getIn([ TABLE.State.maxColumnLength, rowIndex ]);
+  return state.table.getIn([ TABLE.State.maxColumnLength, rowIndex ]) || 0;
 }

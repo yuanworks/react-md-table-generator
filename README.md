@@ -23,6 +23,8 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] markdown table components
 - [x] parse markdown table to Array
 - [x] add original whitespaces
-- [ ] create default mock table
-- [ ] calculate whitespace on changes
+- [x] create default mock table
+- [x] calculate whitespace on changes
 - [x] whitespace should be column by column basis, not whole table
+- [ ] escape | characters
+- [ ] Change implementation to divs of columns (instead of rows)

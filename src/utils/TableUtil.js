@@ -37,22 +37,18 @@ export function parseMarkdown(markdown) {
 
     let rowIndex = 0;
 
-    parsedRow.forEach((row, i) => {
+    parsedRow.forEach(row => {
       const trimRow = row.trim();
       
       if (trimRow) {
         rows[rows.length -1].push(trimRow);
-
-        if (!maxColumnLength[rowIndex] || trimRow.length > maxColumnLength[rowIndex]) {
-          maxColumnLength[rowIndex] = trimRow.length;
-        }
+        maxColumnLength[rowIndex] = Math.max(trimRow.length, maxColumnLength[rowIndex] || 0);
 
         rowIndex++;
       }
     })
   });
 
-  console.log(maxColumnLength);
   return { rows, maxColumnLength };
 }
 
@@ -65,4 +61,15 @@ export function getDimensions(immutableRows) {
   columnCount = immutableRows.first().size;
 
   return { rowCount, columnCount };
+}
+
+export function calculateMaxLength(immutableRows, columnIndex) {
+
+  let maxColumnLength = 0;
+
+  immutableRows.forEach(row => {
+    maxColumnLength = Math.max(row.get(columnIndex).length, maxColumnLength);
+  });
+
+  return maxColumnLength;
 }
