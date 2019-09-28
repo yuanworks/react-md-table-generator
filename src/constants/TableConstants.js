@@ -1,11 +1,11 @@
 const TABLE = {
   State: {
-    rows          : 'rows',
-    rowCount      : 'rowCount',
-    columnCount   : 'columnCount',
-    editingRow    : 'editingRow',
-    editingColumn : 'editingColumn',
-    maxCellLength : 'maxCellLength',
+    rows            : 'rows',
+    rowCount        : 'rowCount',
+    columnCount     : 'columnCount',
+    editingRow      : 'editingRow',
+    editingColumn   : 'editingColumn',
+    maxColumnLength : 'maxColumnLength',
   },
 };
 

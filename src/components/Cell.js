@@ -41,6 +41,9 @@ export default function Cell({ rowIndex, columnIndex }) {
       case 'Tab':
         moveEditingCell('right');
         break;
+
+      default:
+        break;
     }
   }
 

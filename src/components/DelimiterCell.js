@@ -5,12 +5,12 @@ import * as TableSelectors from '../redux/selectors/TableSelectors';
 export default function DelimiterCell({ columnIndex }) {
   
   const lastColumn = useSelector(TableSelectors.isLastColumn(columnIndex));
-  const maxCellLength = useSelector(TableSelectors.getMaxCellLength());
+  const maxColumnLength = useSelector(TableSelectors.getMaxColumnLength(columnIndex));
 
   let delimiters = '---';
 
-  if (maxCellLength) {
-    delimiters = Array(maxCellLength).fill('-').join('');
+  if (maxColumnLength) {
+    delimiters = Array(maxColumnLength).fill('-').join('');
   }
 
   return (

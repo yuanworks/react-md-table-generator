@@ -7,12 +7,11 @@ const initialState = Map({
 
   editingRow    : null,
   editingColumn : null,
-  hasHeadingRow : true,
   
   rowCount    : 3,
   columnCount : 3,
 
-  maxCellLength : 3,
+  maxColumnLength : Map(),
   //currentMax    : Map({ row: null, column: null }),
   //previousMax   : Map({ row: null, column: null }),
 
@@ -57,19 +56,22 @@ export default function table(state = initialState, action) {
             editingRow    : (editingColumn + 1) % columnCount,
             editingColumn : (editingRow + Math.floor((editingColumn + 1) / columnCount)) % rowCount,
           });
+        
+        default:
+          return state;
       }
     }
 
     case 'TABLE_IMPORT_DATA':
-      let { rows, maxCellLength } = TableUtil.parseMarkdown(action.payload.markdown);
+      let { rows, maxColumnLength } = TableUtil.parseMarkdown(action.payload.markdown);
       rows = fromJS(rows);
       const { rowCount, columnCount } = TableUtil.getDimensions(rows);
 
       return state.merge({
-        rows: fromJS(rows),
+        rows          : fromJS(rows),
+        maxColumnLength : fromJS(maxColumnLength),
         rowCount,
         columnCount,
-        maxCellLength,
       });
 
     default:

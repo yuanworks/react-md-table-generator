@@ -2,7 +2,7 @@ export function parseMarkdown(markdown) {
 
   const lines = markdown.match(/.+/g);
   const rows = [];
-  let maxCellLength = 0;
+  const maxColumnLength = [];
 
   lines.forEach((line, i) => {
  
@@ -35,20 +35,25 @@ export function parseMarkdown(markdown) {
 
     rows.push([]);
 
-    parsedRow.forEach(row => {
+    let rowIndex = 0;
+
+    parsedRow.forEach((row, i) => {
       const trimRow = row.trim();
       
       if (trimRow) {
         rows[rows.length -1].push(trimRow);
 
-        if (trimRow.length > maxCellLength) {
-          maxCellLength = trimRow.length;
+        if (!maxColumnLength[rowIndex] || trimRow.length > maxColumnLength[rowIndex]) {
+          maxColumnLength[rowIndex] = trimRow.length;
         }
+
+        rowIndex++;
       }
     })
   });
 
-  return { rows, maxCellLength };
+  console.log(maxColumnLength);
+  return { rows, maxColumnLength };
 }
 
 export function getDimensions(immutableRows) {

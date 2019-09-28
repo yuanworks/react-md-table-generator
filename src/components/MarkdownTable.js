@@ -11,14 +11,11 @@ import '../styles/MarkdownTable.scss';
 export default function MarkdownTable() {
 
   const rowCount = useSelector(TableSelectors.getRowCount());
-  const hasHeadingRow = useSelector(state => state.table.get('hasHeadingRow'));
-  
   const rows = [];
 
   for (let i = 0; i < rowCount; i++) {
     rows.push(<MarkdownRow key={i} rowIndex={i} />);
-    
-    (hasHeadingRow && i === 0) && rows.push(<DelimiterRow key='delimiter' />);
+    (i === 0) && rows.push(<DelimiterRow key='delimiter' />);
   }
 
   return (
