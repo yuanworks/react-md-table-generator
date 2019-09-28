@@ -1,17 +1,17 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Row from './Row';
+import Column from './Column';
 import * as TableSelectors from '../redux/selectors/TableSelectors';
 
 export default function Table() {
 
-  const rowCount = useSelector(TableSelectors.getRowCount());
-  const rows = Array(rowCount).fill(0);
+  const columnCount = useSelector(TableSelectors.getColumnCount());
+  const columns = Array(columnCount).fill(0);
 
   return (
     <div className='table'>
-      { rows && rows.map((row, i) => (
-        <Row key={i} rowIndex={i} />
+      { columns && columns.map((_, i) => (
+        <Column key={i} columnIndex={i} />
       ))}
     </div>
   )

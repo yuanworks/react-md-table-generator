@@ -32,15 +32,19 @@ html {
 
 .table {
   border: 1px solid gray;
+  display: flex;
 }
 
 .cell {
   border: 1px solid gray;
-  //border-top: none;
-  //border-left: none;
-  display: inline-block;
-  width: 200px;
-  height: 100%;
+  min-width: 100px;
+  min-height: 32px;
+  text-align: left;
+
+  > span {
+    display: block;
+    padding: 4px;
+  }
 
   &:first-child {
     //border-top: 1px solid gray;
