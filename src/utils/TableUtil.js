@@ -73,3 +73,9 @@ export function calculateMaxLength(immutableRows, columnIndex) {
 
   return maxColumnLength;
 }
+
+export function unescapeMarkdown(markdown) {
+  const unescapedString = markdown && markdown.replace(/\\\|/g, '|');
+
+  return unescapedString;
+}

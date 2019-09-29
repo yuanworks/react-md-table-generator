@@ -9,12 +9,14 @@
     .editor-pane {
       flex: 1;
       padding: 12px;
+      overflow: auto;
     }
 
     .markdown-pane {
       flex: 1;
       background: #f6f8fa;
       padding: 12px;
+      overflow: auto;
     }
   }
 }

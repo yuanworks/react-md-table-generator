@@ -2,10 +2,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as TableActions from '../redux/actions/TableActions';
 import * as TableSelectors from '../redux/selectors/TableSelectors';
+import * as TableUtil from '../utils/TableUtil';
 
 export default function Cell({ rowIndex, columnIndex }) {
 
   const value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
+  const unescapedString = TableUtil.unescapeMarkdown(value);
   
   const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
   
@@ -29,7 +31,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   }
 
   const renderCell = () => {
-    return <span>{ value }</span>
+    return <div className='cell-value'>{ unescapedString }</div>
   }
 
   const handleKeyPress = e => {

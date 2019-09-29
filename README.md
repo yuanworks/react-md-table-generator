@@ -28,7 +28,7 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] whitespace should be column by column basis, not whole table
 - [ ] escape | characters
 - [x] Change implementation to table
-- [ ] Menu bar
+- [ ] Menu bar\
 
 ### CSS
 - [x] Column view for panes
