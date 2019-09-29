@@ -1,5 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ContentEditable from 'react-contenteditable';
+
 import * as TableActions from '../redux/actions/TableActions';
 import * as TableSelectors from '../redux/selectors/TableSelectors';
 import * as TableUtil from '../utils/TableUtil';
@@ -24,14 +26,21 @@ export default function Cell({ rowIndex, columnIndex }) {
         autoFocus
         value={value || ''}
         onChange={(e) => editValue(e.target.value)}
-        onBlur={clearEditingCell}
+        onBlur={null && clearEditingCell}
         onKeyDown={handleKeyPress}
       />
     );
   }
 
   const renderCell = () => {
-    return <div className='cell-value'>{ unescapedString }</div>
+    return (
+      <ContentEditable
+        html={unescapedString || ''}
+        onChange={e => editValue(TableUtil.htmlToMarkdown(e.target.value))}
+        className='cell-value'
+      />
+    );
+    //return <div className='cell-value' contentEditable onChange={(e) => editValue(e.target.value)}>{ unescapedString }</div>
   }
 
   const handleKeyPress = e => {
@@ -52,7 +61,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const isHeader = (rowIndex === 0);
 
   return (isHeader
-    ? <th className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
-    : <td className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
+    ? <th className='cell' tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
+    : <td className='cell' tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
   )
 }

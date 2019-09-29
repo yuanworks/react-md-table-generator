@@ -75,7 +75,30 @@ export function calculateMaxLength(immutableRows, columnIndex) {
 }
 
 export function unescapeMarkdown(markdown) {
-  const unescapedString = markdown && markdown.replace(/\\\|/g, '|');
+  let string = markdown && markdown.replace(/\\\|/g, '|');
 
-  return unescapedString;
+  for (let key in HTML_ENTITIES) {
+    string = string.replace(new RegExp(HTML_ENTITIES[key], 'g'), key);
+  }
+
+  return string;
+}
+
+const HTML_ENTITIES = {
+  '&amp;'  : '&',
+  '&lt;'   : '<',
+  '&gt;'   : '>',
+  '&nbsp;' : ' ',
+};
+
+export function htmlToMarkdown(html) {
+  let markdown = html || '';
+
+  for (let key in HTML_ENTITIES) {
+    markdown = markdown.replace(new RegExp(key, 'g'), HTML_ENTITIES[key]);
+  }
+
+  markdown = markdown.replace(/\|/g, '\\|');
+
+  return markdown;
 }
