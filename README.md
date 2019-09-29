@@ -12,11 +12,11 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] Add Redux
 - [x] Add SASS support
 - [x] Add immutable
-- [ ] Research where to deploy the Production build
+- [x] Deploy to EC9
 
 ### Tasks
 - [x] Create "table" JSON object
-- [ ] Save redux to local storage
+- [ ] Save redux to local storage (debounced)
 - [x] Create redux boilerplate
 - [x] Keyboard control (experimental)
 - [x] css for input + cell similar
@@ -27,4 +27,8 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [x] calculate whitespace on changes
 - [x] whitespace should be column by column basis, not whole table
 - [ ] escape | characters
-- [ ] Change implementation to divs of columns (instead of rows)
+- [x] Change implementation to table
+- [ ] Menu bar
+
+### CSS
+- [x] Column view for panes

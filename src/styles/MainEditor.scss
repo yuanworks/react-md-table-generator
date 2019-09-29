@@ -1,0 +1,20 @@
+.main-editor {
+
+  height: 100%;
+
+  .pane-view {
+    display: flex;
+    height: 100%;
+
+    .editor-pane {
+      flex: 1;
+      padding: 12px;
+    }
+
+    .markdown-pane {
+      flex: 1;
+      background: #f6f8fa;
+      padding: 12px;
+    }
+  }
+}

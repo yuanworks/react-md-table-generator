@@ -6,7 +6,7 @@ import * as TableSelectors from '../redux/selectors/TableSelectors';
 import MarkdownRow from './MarkdownRow';
 import DelimiterRow from './DelimiterRow';
 
-import '../styles/MarkdownTable.scss';
+import '../styles/Table.scss';
 
 export default function MarkdownTable() {
 

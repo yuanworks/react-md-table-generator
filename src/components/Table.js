@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import Row from './Row';
+
 import * as TableSelectors from '../redux/selectors/TableSelectors';
+import Row from './Row';
+
+import '../styles/Table.scss';
 
 export default function Table() {
 
@@ -9,7 +12,7 @@ export default function Table() {
   const rows = Array(rowCount-1).fill(0);
 
   return (
-    <table>
+    <table className='editable'>
       <thead>
         <Row key={0} rowIndex={0} />
       </thead>

@@ -1,24 +1,10 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
-
-import './App.scss';
-import Table from './components/Table';
-import MarkdownTable from './components/MarkdownTable';
-
-import * as TableActions from './redux/actions/TableActions';
-import { TABLE_SAMPLE } from './constants/TableConstants';
+import MainEditor from './containers/MainEditor';
 
 function App() {
 
-  const dispatch          = useDispatch();
-  const importSampleTable = () => dispatch(TableActions.importMarkdownTable(TABLE_SAMPLE));
-
   return (
-    <div className="App">
-      <Table />
-      <MarkdownTable />
-      <button onClick={importSampleTable}>Import Sample</button>
-    </div>
+    <MainEditor />
   );
 }
 
