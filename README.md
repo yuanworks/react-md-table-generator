@@ -42,3 +42,4 @@ Creating Markdown Tables without having to be an ascii art professional.
 
 ### Issues / bugs
 - [ ] Capture "Enter" to avoid empty div's and br's
+- [ ] Firefox / Chrome works differently (spaces and enters)

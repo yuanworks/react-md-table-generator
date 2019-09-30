@@ -13,13 +13,13 @@ export default function Cell({ rowIndex, columnIndex }) {
   const unescapedString = TableUtil.unescapeMarkdown(value);
   
   const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
+  const isExtraCell      = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
   
   const dispatch         = useDispatch();
   const editValue        = value => dispatch(TableActions.editValue(rowIndex, columnIndex, value));
   const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
   const clearEditingCell = () => dispatch(TableActions.setEditingCell());
   const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
-  const isExtraCell      = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
 
   const renderEditing = () => {
     return (
@@ -62,7 +62,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const isHeader = (rowIndex === 0);
 
   return (isHeader
-    ? <th className={classnames('cell', {'extra': isExtraCell})} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
-    : <td className={classnames('cell', {'extra': isExtraCell})} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
+    ? <th className={classnames('cell', {'extra': isExtraCell})}>{editingCell ? renderEditing() : renderCell() }</th>
+    : <td className={classnames('cell', {'extra': isExtraCell})}>{editingCell ? renderEditing() : renderCell() }</td>
   )
 }
