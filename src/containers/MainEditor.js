@@ -11,7 +11,7 @@ import '../styles/MainEditor.scss';
 
 export default function MainEditor() {
 
-  const dispatch          = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => { dispatch(TableActions.importMarkdownTable(TABLE_SAMPLE)) }, [dispatch]);
 
   return (
