@@ -16,6 +16,7 @@ table.editable {
     border: 1px solid #dfe2e5;
     min-width: 100px;
     height: 32px;
+    transition: 0.5s all;
 
     .cell-value {
       display: block;
@@ -29,6 +30,24 @@ table.editable {
       font-size: 16px;
       vertical-align: top;
       padding: 6px 12px;
+    }
+
+    &.extra {
+      border-style: dashed;
+      border-color: white;
+      min-width: 32px;
+      background-color: white;
+      transition: 0.3s all;
+    }
+  }
+
+  &:hover {
+    td, th {
+      &.extra {
+        border-color: #dfe2e5;
+        opacity: 0.5;
+        transition: 0.5s all;
+      }
     }
   }
 } /* --table.editable */

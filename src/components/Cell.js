@@ -1,5 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import ContentEditable from 'react-contenteditable';
+import classnames from 'classnames';
+
 import * as TableActions from '../redux/actions/TableActions';
 import * as TableSelectors from '../redux/selectors/TableSelectors';
 import * as TableUtil from '../utils/TableUtil';
@@ -16,6 +19,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
   const clearEditingCell = () => dispatch(TableActions.setEditingCell());
   const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
+  const isExtraCell      = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
 
   const renderEditing = () => {
     return (
@@ -24,14 +28,20 @@ export default function Cell({ rowIndex, columnIndex }) {
         autoFocus
         value={value || ''}
         onChange={(e) => editValue(e.target.value)}
-        onBlur={clearEditingCell}
+        onBlur={null && clearEditingCell}
         onKeyDown={handleKeyPress}
       />
     );
   }
 
   const renderCell = () => {
-    return <div className='cell-value'>{ unescapedString }</div>
+    return (
+      <ContentEditable
+        html={unescapedString || ''}
+        onChange={e => editValue(TableUtil.htmlToMarkdown(e.target.value))}
+        className='cell-value'
+      />
+    );
   }
 
   const handleKeyPress = e => {
@@ -52,7 +62,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const isHeader = (rowIndex === 0);
 
   return (isHeader
-    ? <th className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
-    : <td className='cell' onClick={setEditingCell} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
+    ? <th className={classnames('cell', {'extra': isExtraCell})} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
+    : <td className={classnames('cell', {'extra': isExtraCell})} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
   )
 }

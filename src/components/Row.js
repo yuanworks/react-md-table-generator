@@ -6,7 +6,7 @@ import Cell from './Cell';
 export default function Row({ rowIndex }) {
 
   const columnCount = useSelector(TableSelectors.getColumnCount());
-  const columns = Array(columnCount).fill(0);
+  const columns = Array(columnCount+1).fill(0);
   
   return (
     <tr>
