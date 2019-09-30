@@ -9,7 +9,7 @@ import '../styles/Table.scss';
 export default function Table() {
 
   const rowCount = useSelector(TableSelectors.getRowCount());
-  const rows = Array(rowCount-1).fill(0);
+  const rows = Array(rowCount).fill(0);
 
   return (
     <table className='editable'>

@@ -68,14 +68,17 @@ export function calculateMaxLength(immutableRows, columnIndex) {
   let maxColumnLength = 0;
 
   immutableRows.forEach(row => {
-    maxColumnLength = Math.max(row.get(columnIndex).length, maxColumnLength);
+    const cellLength = (row.get(columnIndex) && row.get(columnIndex).length) || 0;
+    maxColumnLength = Math.max(cellLength, maxColumnLength);
   });
 
   return maxColumnLength;
 }
 
 export function unescapeMarkdown(markdown) {
-  let string = markdown && markdown.replace(/\\\|/g, '|');
+  let string = markdown || '';
+  
+  string = string.replace(/\\\|/g, '|');
 
   for (let key in HTML_ENTITIES) {
     string = string.replace(new RegExp(HTML_ENTITIES[key], 'g'), key);

@@ -24,7 +24,18 @@ export default function table(state = initialState, action) {
   switch (type) {
 
     case 'TABLE_EDIT_CELL_VALUE': {
+      const rowCount = state.get('rowCount');
+      const columnCount = state.get('columnCount');
+
       const { rowIndex, columnIndex, value } = payload;
+
+      if (rowIndex === rowCount) {
+        state = state.set('rowCount', rowIndex + 1);
+      }
+
+      if (columnIndex === columnCount) {
+        state = state.set('columnCount', columnCount + 1);
+      }
 
       state = state.setIn(['rows', rowIndex, columnIndex], value);
       const maxLength = TableUtil.calculateMaxLength(state.get('rows'), columnIndex);

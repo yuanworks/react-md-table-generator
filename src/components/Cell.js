@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
+import classnames from 'classnames';
 
 import * as TableActions from '../redux/actions/TableActions';
 import * as TableSelectors from '../redux/selectors/TableSelectors';
@@ -18,6 +19,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
   const clearEditingCell = () => dispatch(TableActions.setEditingCell());
   const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
+  const isExtraCell      = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
 
   const renderEditing = () => {
     return (
@@ -40,7 +42,6 @@ export default function Cell({ rowIndex, columnIndex }) {
         className='cell-value'
       />
     );
-    //return <div className='cell-value' contentEditable onChange={(e) => editValue(e.target.value)}>{ unescapedString }</div>
   }
 
   const handleKeyPress = e => {
@@ -61,7 +62,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const isHeader = (rowIndex === 0);
 
   return (isHeader
-    ? <th className='cell' tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
-    : <td className='cell' tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
+    ? <th className={classnames('cell', {'extra': isExtraCell})} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</th>
+    : <td className={classnames('cell', {'extra': isExtraCell})} tabIndex={0}>{editingCell ? renderEditing() : renderCell() }</td>
   )
 }
