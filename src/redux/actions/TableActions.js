@@ -17,3 +17,8 @@ export const importMarkdownTable = markdown => ({
   type    : 'TABLE_IMPORT_DATA',
   payload : { markdown },
 });
+
+export const deleteRow = rowIndex => ({
+  type    : 'TABLE_DELETE_ROW',
+  payload : { rowIndex },
+});

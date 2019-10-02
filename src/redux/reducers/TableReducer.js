@@ -43,6 +43,15 @@ export default function table(state = initialState, action) {
       return state.setIn(['maxColumnLength', columnIndex], maxLength);
     }
 
+    case 'TABLE_DELETE_ROW': {
+      const rowCount = state.get('rowCount');
+
+      const { rowIndex } = payload;
+      
+      state = state.set('rowCount', rowCount - 1);
+      return state.deleteIn([ 'rows', rowIndex ]);
+    }
+
     case 'TABLE_SET_EDITING_CELL': {
       const { editingRow, editingColumn } = payload;
       return state.merge({ editingRow, editingColumn });

@@ -13,7 +13,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const unescapedString = TableUtil.unescapeMarkdown(value);
   
   const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
-  const isExtraCell      = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
+  const isExtraCell = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
   
   const dispatch         = useDispatch();
   const editValue        = value => dispatch(TableActions.editValue(rowIndex, columnIndex, value));

@@ -10,6 +10,19 @@ table.editable {
     &:nth-child(2n) {
       background-color: #f6f8fa;
     }
+
+    &:hover {
+      td, tr {
+        &.delete-cell {
+          cursor: pointer;
+        }
+
+        .delete-icon {
+          opacity: 1;
+          transition: 0.5s all 0.5s;
+        }
+      }
+    }
   }
 
   td, th {
@@ -38,6 +51,19 @@ table.editable {
       min-width: 32px;
       background-color: white;
       transition: 0.3s all;
+    }
+
+    &.delete-cell {
+      border: none;
+      background-color: white;
+      min-width: 24px;
+      text-align: center;
+      
+      .delete-icon {
+        opacity: 0;
+        margin-top: 2px;
+        display: block;
+      }
     }
   }
 

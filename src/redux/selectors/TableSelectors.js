@@ -24,6 +24,6 @@ export const getMaxColumnLength = rowIndex => function(state) {
   return state.table.getIn([ TABLE.State.maxColumnLength, rowIndex ]) || 0;
 }
 
-export const isExtraCell = (rowIndex, columnIndex) => function(state) {
+export const isExtraCell = (rowIndex, columnIndex = -1) => function(state) {
   return (state.table.get(TABLE.State.rowCount) === rowIndex || state.table.get(TABLE.State.columnCount) === columnIndex);
 };
