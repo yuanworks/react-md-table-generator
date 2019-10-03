@@ -31,12 +31,13 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [ ] Menu bar
 - [x] insert extra cells
 - [ ] Render markdown->html inside cells
+- [x] Delete functionality
 
 ### CSS
 - [x] Column view for panes
 
 ### Tests
-- [ ] Set puppeteer for E2E testing
+- [x] Set puppeteer for E2E testing
 - [ ] Util unit tests ?
 - [ ] CI tests + coverage
 

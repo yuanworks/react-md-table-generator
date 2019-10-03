@@ -1,22 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
 
 const puppeteer = require('puppeteer');
 
 const TEST_OPTIONS = {
-  Headless: false,
+  SHOW_BROWSER : false,
+  SLOW_MO      : 50,
 };
 
-describe('Table', () => {
+let browser;
+let page;
+
+beforeAll(async () => {
+  browser = await puppeteer.launch({ headless: !TEST_OPTIONS.SHOW_BROWSER, slowMo: TEST_OPTIONS.SHOW_BROWSER && TEST_OPTIONS.SLOW_MO });
+  page = await browser.newPage();
+});
+
+describe('Main Editor', () => {
   
-  test('app loads correctly', async () => {
-    const browser = await puppeteer.launch({ headless: TEST_OPTIONS.Headless, slowMo: 50 });
-    const page = await browser.newPage();
+  test("Users can edit the table's first cell in the header", async () => {
 
     page.setViewport({ width: 1200, height: 800 });
 
-    await page.goto('http://localhost:3000/');
+    await page.goto('http://localhost:3003/');
     await page.waitForSelector('table.editable');
 
     const th = await page.$$('table.editable th');
@@ -32,7 +36,9 @@ describe('Table', () => {
     const innerHTML = await page.evaluate(el => el.firstChild.innerHTML, th[1]);
     expect(innerHTML.toString()).toBe('Hello!');
 
-    browser.close();
   }, 16000);
+});
 
+afterAll(() => {
+  browser.close();
 });
