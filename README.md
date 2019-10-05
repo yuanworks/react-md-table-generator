@@ -2,6 +2,8 @@
 
 Creating Markdown Tables without having to be an ascii art professional.
 
+![react_md_table](https://user-images.githubusercontent.com/3508123/66262015-18d2c680-e813-11e9-8885-29439a869849.gif)
+
 ## To Run
 
 ```
