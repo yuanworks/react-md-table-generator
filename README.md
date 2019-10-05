@@ -2,7 +2,27 @@
 
 Creating Markdown Tables without having to be an ascii art professional.
 
-## To Do
+## To Run
+
+```
+yarn install
+yarn start
+```
+
+Or,
+
+```
+npm install
+npm start
+```
+
+The server will start on `http://localhost:3003`. You can manually set the port to, for example, 3030, by running:
+
+```
+PORT=3030 npm start
+```
+
+## TO DO LIST
 
 ### Misc
 
@@ -31,7 +51,10 @@ Creating Markdown Tables without having to be an ascii art professional.
 - [ ] Menu bar
 - [x] insert extra cells
 - [ ] Render markdown->html inside cells
-- [x] Delete functionality
+- [x] Delete row functionality
+- [ ] Delete column functionality
+- [ ] Add UNDO
+- [ ] Option to remove filling whitespaces
 
 ### CSS
 - [x] Column view for panes
@@ -44,3 +67,7 @@ Creating Markdown Tables without having to be an ascii art professional.
 ### Issues / bugs
 - [ ] Capture "Enter" to avoid empty div's and br's
 - [ ] Firefox / Chrome works differently (spaces and enters)
+
+## LICENSE
+
+TBD.
