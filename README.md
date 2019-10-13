@@ -51,7 +51,7 @@ The server will start on `http://localhost:3003`.
 - [ ] Render markdown->html inside cells
 - [x] Delete row functionality
 - [x] Delete column functionality
-- [ ] React Spring for Delete Cell fade animation
+- [x] React Spring for Delete Cell fade animation
 - [ ] Add UNDO
 - [ ] Option to remove filling whitespaces
 
