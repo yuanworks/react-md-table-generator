@@ -22,3 +22,8 @@ export const deleteRow = rowIndex => ({
   type    : 'TABLE_DELETE_ROW',
   payload : { rowIndex },
 });
+
+export const deleteColumn = columnIndex => ({
+  type    : 'TABLE_DELETE_COLUMN',
+  payload : { columnIndex },
+});

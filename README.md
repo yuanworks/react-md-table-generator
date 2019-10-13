@@ -18,11 +18,7 @@ npm install
 npm start
 ```
 
-The server will start on `http://localhost:3003`. You can manually set the port to, for example, 3030, by running:
-
-```
-PORT=3030 npm start
-```
+The server will start on `http://localhost:3003`.
 
 ## TO DO LIST
 
@@ -54,7 +50,8 @@ PORT=3030 npm start
 - [x] insert extra cells
 - [ ] Render markdown->html inside cells
 - [x] Delete row functionality
-- [ ] Delete column functionality
+- [x] Delete column functionality
+- [ ] React Spring for Delete Cell fade animation
 - [ ] Add UNDO
 - [ ] Option to remove filling whitespaces
 

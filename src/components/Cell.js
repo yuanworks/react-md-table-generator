@@ -16,7 +16,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   const isExtraCell = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
   
   const dispatch         = useDispatch();
-  const editValue        = value => dispatch(TableActions.editValue(rowIndex, columnIndex, value));
+  const editValue        = e => dispatch(TableActions.editValue(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value)));
   const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
   const clearEditingCell = () => dispatch(TableActions.setEditingCell());
   const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
@@ -38,7 +38,9 @@ export default function Cell({ rowIndex, columnIndex }) {
     return (
       <ContentEditable
         html={unescapedString || ''}
-        onChange={e => editValue(TableUtil.htmlToMarkdown(e.target.value))}
+        onChange={editValue}
+        onFocus={setEditingCell}
+        /*onBlur={clearEditingCell}*/
         className='cell-value'
       />
     );
@@ -61,8 +63,9 @@ export default function Cell({ rowIndex, columnIndex }) {
 
   const isHeader = (rowIndex === 0);
 
-  return (isHeader
-    ? <th className={classnames('cell', {'extra': isExtraCell})}>{editingCell ? renderEditing() : renderCell() }</th>
-    : <td className={classnames('cell', {'extra': isExtraCell})}>{editingCell ? renderEditing() : renderCell() }</td>
+  return (
+    <td className={classnames({'extra': isExtraCell, 'table-head': isHeader})}>
+      { renderCell() }
+    </td>
   )
 }

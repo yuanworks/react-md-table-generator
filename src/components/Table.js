@@ -9,20 +9,17 @@ import '../styles/Table.scss';
 export default function Table() {
 
   const rowCount = useSelector(TableSelectors.getRowCount());
-  const rows = Array(rowCount).fill(0);
+  const rows = Array(rowCount+1).fill(0);
 
   return (
     <table className='editable'>
-      <thead>
-        <Row key={0} rowIndex={0} />
-      </thead>
 
       <tbody>
+        <Row key='delete-row' deleteRow />
         { rows && rows.map((_, i) => (
-          <Row key={i+1} rowIndex={i+1} />
+          <Row key={i} rowIndex={i} />
         ))}
       </tbody>
-
     </table>
   )
 };

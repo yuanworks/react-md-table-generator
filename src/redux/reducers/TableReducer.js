@@ -52,6 +52,20 @@ export default function table(state = initialState, action) {
       return state.deleteIn([ 'rows', rowIndex ]);
     }
 
+    case 'TABLE_DELETE_COLUMN': {
+      const columnCount = state.get('columnCount');
+
+      const { columnIndex } = payload;
+      let rows = state.get('rows');
+
+      rows = rows.map(row => row.filter((_, i) => i !== columnIndex));
+
+      return state.merge({
+        rows,
+        columnCount: columnCount - 1,
+      });
+    }
+
     case 'TABLE_SET_EDITING_CELL': {
       const { editingRow, editingColumn } = payload;
       return state.merge({ editingRow, editingColumn });

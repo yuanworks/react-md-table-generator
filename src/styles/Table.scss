@@ -2,10 +2,6 @@ table.editable {
 
   border-collapse: collapse;
 
-  thead {
-    text-align: center;
-  }
-
   tr {  
     &:nth-child(2n) {
       background-color: #f6f8fa;
@@ -25,7 +21,15 @@ table.editable {
     }
   }
 
-  td, th {
+  col {
+
+    &
+    &:hover {
+      text-transform: capitalize;
+    }
+  }
+
+  td {
     border: 1px solid #dfe2e5;
     min-width: 100px;
     height: 32px;
@@ -45,6 +49,11 @@ table.editable {
       padding: 6px 12px;
     }
 
+    &.table-head {
+      text-align: center;
+      font-weight: 700;
+    }
+
     &.extra {
       border-style: dashed;
       border-color: white;
@@ -58,12 +67,14 @@ table.editable {
       background-color: white;
       min-width: 24px;
       text-align: center;
-      
+
+      /*
       .delete-icon {
         opacity: 0;
-        margin-top: 2px;
+        margin: 2px auto 0;
         display: block;
       }
+      */
     }
   }
 
