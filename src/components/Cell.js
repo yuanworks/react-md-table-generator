@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import ContentEditable from 'react-contenteditable';
 import classnames from 'classnames';
@@ -21,39 +21,20 @@ export default function Cell({ rowIndex, columnIndex }) {
   const clearEditingCell = () => dispatch(TableActions.setEditingCell());
   const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
 
-  const renderEditing = () => {
-    return (
-      <input
-        type='text'
-        autoFocus
-        value={value || ''}
-        onChange={(e) => editValue(e.target.value)}
-        onBlur={null && clearEditingCell}
-        onKeyDown={handleKeyPress}
-      />
-    );
-  }
+  const editableRef = useRef();
 
-  const renderCell = () => {
-    return (
-      <ContentEditable
-        html={unescapedString || ''}
-        onChange={editValue}
-        onFocus={setEditingCell}
-        /*onBlur={clearEditingCell}*/
-        className='cell-value'
-      />
-    );
+  if (editingCell && editableRef) {
+    editableRef.current.el.current.focus();
   }
 
   const handleKeyPress = e => {
     switch(e.key) {
-      case 'Enter':
+      case 'ArrowDown':
         moveEditingCell('down');
         break;
 
-      case 'Tab':
-        moveEditingCell('right');
+      case 'ArrowUp':
+        moveEditingCell('up');
         break;
 
       default:
@@ -65,7 +46,15 @@ export default function Cell({ rowIndex, columnIndex }) {
 
   return (
     <td className={classnames({'extra': isExtraCell, 'table-head': isHeader})}>
-      { renderCell() }
+      <ContentEditable
+        ref={editableRef}
+        html={unescapedString || ''}
+        onChange={editValue}
+        onFocus={setEditingCell}
+        /*onBlur={clearEditingCell}*/
+        className='cell-value'
+        onKeyDown={handleKeyPress}
+      />
     </td>
   )
 }

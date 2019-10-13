@@ -16,15 +16,15 @@ beforeAll(async () => {
 
 describe('Main Editor', () => {
   
-  test("Users can edit the table's first cell in the header", async () => {
+  test("User can set the first row (table head) to 'Hello!'", async () => {
 
     page.setViewport({ width: 1200, height: 800 });
 
     await page.goto('http://localhost:3003/');
-    await page.waitForSelector('table.editable');
+    await page.waitForSelector('table.editable td.table-head');
 
-    const th = await page.$$('table.editable th');
-    await th[1].click();
+    const tr = await page.$$('table.editable td.table-head');
+    await tr[0].click();
 
     //await page.click('table.editable tr');
     await page.mouse.down({clickCount: 1});
@@ -33,7 +33,7 @@ describe('Main Editor', () => {
     await page.type('table.editable tr', "Hello!");
     //await page.screenshot({ path: 'main.png'});
 
-    const innerHTML = await page.evaluate(el => el.firstChild.innerHTML, th[1]);
+    const innerHTML = await page.evaluate(el => el.firstChild.innerHTML, tr[0]);
     expect(innerHTML.toString()).toBe('Hello!');
 
   }, 16000);

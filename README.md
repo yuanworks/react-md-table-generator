@@ -36,7 +36,7 @@ The server will start on `http://localhost:3003`.
 - [x] Create "table" JSON object
 - [ ] Save redux to local storage (debounced)
 - [x] Create redux boilerplate
-- [x] Keyboard control (experimental)
+- [x] Keyboard control (tab + shift tab for left-right, down/up keyboard)
 - [x] css for input + cell similar
 - [x] markdown table components
 - [x] parse markdown table to Array

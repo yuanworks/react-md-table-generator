@@ -73,26 +73,23 @@ export default function table(state = initialState, action) {
 
     case 'TABLE_MOVE_EDITING_CELL': {
       const editingRow    = state.get('editingRow');
-      const editingColumn = state.get('editingColumn');
-      const rowCount      = state.get('rowCount');
-      const columnCount   = state.get('columnCount');
+      const extraRowCount = state.get('rowCount') + 1;
+      let moveToRow = 0;
       
       switch (payload.direction) {
         case 'down':
-          return state.merge({
-            editingRow    : (editingRow + 1) % rowCount,
-            editingColumn : (editingColumn + Math.floor((editingRow + 1) / rowCount)) % columnCount,
-          });
+          moveToRow = 1;
+          break;
 
-        case 'right':
-          return state.merge({
-            editingRow    : (editingColumn + 1) % columnCount,
-            editingColumn : (editingRow + Math.floor((editingColumn + 1) / columnCount)) % rowCount,
-          });
-        
+        case 'up':
+          moveToRow = -1;
+          break;
+
         default:
           return state;
       }
+
+      return state.set('editingRow', (extraRowCount + editingRow + moveToRow) % extraRowCount);
     }
 
     case 'TABLE_IMPORT_DATA':
