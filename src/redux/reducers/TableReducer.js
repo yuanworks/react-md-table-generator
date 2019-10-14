@@ -29,15 +29,17 @@ export default function table(state = initialState, action) {
 
       const { rowIndex, columnIndex, value } = payload;
 
-      if (rowIndex === rowCount) {
-        state = state.set('rowCount', rowIndex + 1);
-      }
-
-      if (columnIndex === columnCount) {
-        state = state.set('columnCount', columnCount + 1);
-      }
-
       return state.withMutations(state => {
+
+        if (rowIndex === rowCount) {
+          state.set('rowCount', rowIndex + 1);
+          state.set('rows', state.get('rows').push(List([])));
+        }
+  
+        if (columnIndex === columnCount) {
+          state.set('columnCount', columnCount + 1);
+        }
+
         state.setIn(['rows', rowIndex, columnIndex], value);
         const maxLength = TableUtil.calculateMaxLength(state.get('rows'), columnIndex);
         state.setIn(['maxColumnLength', columnIndex], maxLength);
