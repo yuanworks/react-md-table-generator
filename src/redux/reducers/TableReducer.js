@@ -37,10 +37,37 @@ export default function table(state = initialState, action) {
         state = state.set('columnCount', columnCount + 1);
       }
 
-      state = state.setIn(['rows', rowIndex, columnIndex], value);
-      const maxLength = TableUtil.calculateMaxLength(state.get('rows'), columnIndex);
+      return state.withMutations(state => {
+        state.setIn(['rows', rowIndex, columnIndex], value);
+        const maxLength = TableUtil.calculateMaxLength(state.get('rows'), columnIndex);
+        state.setIn(['maxColumnLength', columnIndex], maxLength);
+      });
+    }
 
-      return state.setIn(['maxColumnLength', columnIndex], maxLength);
+    case 'TABLE_INSERT_ROW': {
+      const rowCount = state.get('rowCount');
+      let rows = state.get('rows');
+
+      rows = rows.insert(action.payload.rowIndex, List([]));
+
+      return state.merge({
+        rowCount: rowCount + 1,
+        rows,
+      });
+    }
+
+    case 'TABLE_INSERT_COLUMN': {
+      const columnCount = state.get('columnCount');
+      let rows = state.get('rows')
+
+      rows = rows.map(row => row.insert(action.payload.columnIndex, ''));
+
+      console.log('RESET maxColumnLength');
+      
+      return state.merge({
+        columnCount: columnCount + 1,
+        rows,
+      });
     }
 
     case 'TABLE_DELETE_ROW': {
@@ -92,7 +119,7 @@ export default function table(state = initialState, action) {
       return state.set('editingRow', (extraRowCount + editingRow + moveToRow) % extraRowCount);
     }
 
-    case 'TABLE_IMPORT_DATA':
+    case 'TABLE_IMPORT_DATA': {
       let { rows, maxColumnLength } = TableUtil.parseMarkdown(action.payload.markdown);
       rows = fromJS(rows);
       const { rowCount, columnCount } = TableUtil.getDimensions(rows);
@@ -103,6 +130,7 @@ export default function table(state = initialState, action) {
         rowCount,
         columnCount,
       });
+    }
 
     default:
       return state;

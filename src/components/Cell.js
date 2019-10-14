@@ -6,9 +6,9 @@ import classnames from 'classnames';
 import * as TableActions from '../redux/actions/TableActions';
 import * as TableSelectors from '../redux/selectors/TableSelectors';
 import * as TableUtil from '../utils/TableUtil';
+import { TiPlus, TiPlusOutline } from 'react-icons/ti';
 
 export default function Cell({ rowIndex, columnIndex }) {
-
   const value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
   const unescapedString = TableUtil.unescapeMarkdown(value);
   
@@ -17,9 +17,11 @@ export default function Cell({ rowIndex, columnIndex }) {
   
   const dispatch         = useDispatch();
   const editValue        = e => dispatch(TableActions.editValue(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value)));
+  const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
   const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
   const clearEditingCell = () => dispatch(TableActions.setEditingCell());
-  const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
+  const insertRow        = () => dispatch(TableActions.insertRow(rowIndex));
+  const insertColumn     = () => dispatch(TableActions.insertColumn(columnIndex));
 
   const editableRef = useRef();
 
@@ -46,6 +48,12 @@ export default function Cell({ rowIndex, columnIndex }) {
 
   return (
     <td className={classnames({'extra': isExtraCell, 'table-head': isHeader})}>
+      { editingCell && editableRef && 
+        <>
+          <div className='insert-row'><TiPlusOutline className='insert-icon' onClick={insertRow} /></div>
+          <div className='insert-column'><TiPlusOutline className='insert-icon' onClick={insertColumn }/></div>
+        </>
+      }
       <ContentEditable
         ref={editableRef}
         html={unescapedString || ''}

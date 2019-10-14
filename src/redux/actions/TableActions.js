@@ -27,3 +27,13 @@ export const deleteColumn = columnIndex => ({
   type    : 'TABLE_DELETE_COLUMN',
   payload : { columnIndex },
 });
+
+export const insertRow = rowIndex => ({
+  type    : 'TABLE_INSERT_ROW',
+  payload : { rowIndex },
+});
+
+export const insertColumn = columnIndex => ({
+  type    : 'TABLE_INSERT_COLUMN',
+  payload : { columnIndex },
+});

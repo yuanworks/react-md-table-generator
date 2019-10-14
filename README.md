@@ -44,9 +44,10 @@ The server will start on `http://localhost:3003`.
 - [x] create default mock table
 - [x] calculate whitespace on changes
 - [x] whitespace should be column by column basis, not whole table
-- [ ] escape | characters
+- [x] escape | characters
 - [x] Change implementation to table
 - [ ] Menu bar
+- [ ] Input bar like excel for table row
 - [x] insert extra cells
 - [ ] Render markdown->html inside cells
 - [x] Delete row functionality
@@ -54,6 +55,7 @@ The server will start on `http://localhost:3003`.
 - [x] React Spring for Delete Cell fade animation
 - [ ] Add UNDO
 - [ ] Option to remove filling whitespaces
+- [x] Insert at position for rows/column
 
 ### CSS
 - [x] Column view for panes
