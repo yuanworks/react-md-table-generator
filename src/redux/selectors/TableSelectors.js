@@ -1,5 +1,9 @@
 import TABLE from "../../constants/TableConstants";
 
+export const getEditingCellValue = () => function(state) {
+  return state.table.getIn([ TABLE.State.rows, state.table.get(TABLE.State.activeRow), state.table.get(TABLE.State.activeColumn) ]);
+}
+
 export const getCellValue = (rowIndex, columnIndex) => function(state) {
   return state.table.getIn([ TABLE.State.rows, rowIndex, columnIndex ]);
 };
@@ -17,15 +21,15 @@ export const isLastColumn = columnIndex => function(state) {
 };
 
 export const isEditingCell = (rowIndex, columnIndex) => function(state) {
-  return state.table.get(TABLE.State.editingRow) === rowIndex && state.table.get(TABLE.State.editingColumn) === columnIndex
+  return state.table.get(TABLE.State.activeRow) === rowIndex && state.table.get(TABLE.State.activeColumn) === columnIndex
 };
 
 export const isEditingRow = rowIndex => function(state) {
-  return rowIndex !== undefined && state.table.get(TABLE.State.editingRow) === rowIndex;
+  return rowIndex !== undefined && state.table.get(TABLE.State.activeRow) === rowIndex;
 };
 
 export const isEditingColumn = columnIndex => function(state) {
-  return columnIndex !== undefined && state.table.get(TABLE.State.editingColumn) === columnIndex;
+  return columnIndex !== undefined && state.table.get(TABLE.State.activeColumn) === columnIndex;
 };
 
 export const getMaxColumnLength = rowIndex => function(state) {

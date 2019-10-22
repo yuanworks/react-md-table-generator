@@ -3,14 +3,19 @@ import * as TableUtil from "../../utils/TableUtil";
 
 const initialState = Map({
 
-  editingRow    : null,
-  editingColumn : null,
+  // Editing or highlighted row, column index:
+  activeRow    : null,
+  activeColumn : null,
+  editingFrom  : null,
   
+  // Total number of rows and columns:
   rowCount    : 3,
   columnCount : 3,
 
+  // Max string length per column index:
   maxColumnLength : List(),
 
+  // List of rows (column sized):
   rows: List([
     List(['','','']),
     List(['','','']),
@@ -23,11 +28,17 @@ export default function table(state = initialState, action) {
 
   switch (type) {
 
-    case 'TABLE_EDIT_CELL_VALUE': {
+    case 'TABLE_EDIT_CELL':
+    case 'TABLE_EDIT_ACTIVE_CELL': {
       const rowCount = state.get('rowCount');
       const columnCount = state.get('columnCount');
 
-      const { rowIndex, columnIndex, value } = payload;
+      let { rowIndex, columnIndex, value } = payload;
+
+      if (rowIndex === undefined && columnIndex === undefined) {
+        rowIndex = state.get('activeRow');
+        columnIndex = state.get('activeColumn');
+      }
 
       return state.withMutations(state => {
 
@@ -62,7 +73,7 @@ export default function table(state = initialState, action) {
       const { columnIndex } = action.payload;
 
       const columnCount = state.get('columnCount') + 1;
-      
+
       let rows = state.get('rows');
       rows = rows.map(row => row.insert(columnIndex, ''));
       
@@ -98,13 +109,13 @@ export default function table(state = initialState, action) {
       });
     }
 
-    case 'TABLE_SET_EDITING_CELL': {
-      const { editingRow, editingColumn } = payload;
-      return state.merge({ editingRow, editingColumn });
+    case 'TABLE_SET_ACTIVE_CELL': {
+      const { activeRow, activeColumn } = payload;
+      return state.merge({ activeRow, activeColumn });
     }
 
-    case 'TABLE_MOVE_EDITING_CELL': {
-      const editingRow    = state.get('editingRow');
+    case 'TABLE_MOVE_ACTIVE_CELL': {
+      const activeRow    = state.get('activeRow');
       const extraRowCount = state.get('rowCount') + 1;
       let moveToRow = 0;
       
@@ -121,7 +132,7 @@ export default function table(state = initialState, action) {
           return state;
       }
 
-      return state.set('editingRow', (extraRowCount + editingRow + moveToRow) % extraRowCount);
+      return state.set('activeRow', (extraRowCount + activeRow + moveToRow) % extraRowCount);
     }
 
     case 'TABLE_IMPORT_DATA': {

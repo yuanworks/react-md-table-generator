@@ -8,6 +8,7 @@ import Table from "../components/Table";
 import MarkdownTable from "../components/MarkdownTable";
 
 import '../styles/MainEditor.scss';
+import CellValueInput from '../components/CellValueInput';
 
 export default function MainEditor() {
 
@@ -16,6 +17,7 @@ export default function MainEditor() {
 
   return (
     <div className='main-editor'>
+      <CellValueInput />
       <div className='pane-view'>
         <div className='editor-pane'><Table /></div>
         <div className='markdown-pane'><MarkdownTable /></div>

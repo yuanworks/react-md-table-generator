@@ -16,27 +16,28 @@ export default function Cell({ rowIndex, columnIndex }) {
   const isExtraCell = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
   
   const dispatch         = useDispatch();
-  const editValue        = e => dispatch(TableActions.editValue(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value)));
-  const moveEditingCell  = direction => dispatch(TableActions.moveEditingCell(direction));
-  const setEditingCell   = () => dispatch(TableActions.setEditingCell(rowIndex, columnIndex));
-  const clearEditingCell = () => dispatch(TableActions.setEditingCell());
+  const editCell         = e => dispatch(TableActions.editCell(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value)));
+  const moveActiveCell  = direction => dispatch(TableActions.moveActiveCell(direction));
+  const setActiveCell   = () => dispatch(TableActions.setActiveCell(rowIndex, columnIndex));
+  const clearEditingCell = () => dispatch(TableActions.setActiveCell());
   const insertRow        = () => dispatch(TableActions.insertRow(rowIndex));
   const insertColumn     = () => dispatch(TableActions.insertColumn(columnIndex));
 
   const editableRef = useRef();
 
   if (editingCell && editableRef) {
+    const WARNING_NEED_TO_NOT_CHANGE_FOCUS = '';
     editableRef.current.el.current.focus();
   }
 
   const handleKeyPress = e => {
     switch(e.key) {
       case 'ArrowDown':
-        moveEditingCell('down');
+        moveActiveCell('down');
         break;
 
       case 'ArrowUp':
-        moveEditingCell('up');
+        moveActiveCell('up');
         break;
 
       default:
@@ -58,8 +59,8 @@ export default function Cell({ rowIndex, columnIndex }) {
       <ContentEditable
         ref={editableRef}
         html={unescapedString || ''}
-        onChange={editValue}
-        onFocus={setEditingCell}
+        onChange={editCell}
+        onFocus={setActiveCell}
         /*onBlur={clearEditingCell}*/
         className='cell-value'
         onKeyDown={handleKeyPress}

@@ -3,8 +3,8 @@ const TABLE = {
     rows            : 'rows',
     rowCount        : 'rowCount',
     columnCount     : 'columnCount',
-    editingRow      : 'editingRow',
-    editingColumn   : 'editingColumn',
+    activeRow       : 'activeRow',
+    activeColumn    : 'activeColumn',
     maxColumnLength : 'maxColumnLength',
   },
 };

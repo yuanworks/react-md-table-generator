@@ -1,15 +1,20 @@
-export const editValue = (rowIndex, columnIndex, value) => ({
-  type    : 'TABLE_EDIT_CELL_VALUE',
+export const editCell = (rowIndex, columnIndex, value) => ({
+  type    : 'TABLE_EDIT_CELL',
   payload : { rowIndex, columnIndex, value },
 });
 
-export const setEditingCell = (editingRow, editingColumn) => ({
-  type    : 'TABLE_SET_EDITING_CELL',
-  payload : { editingRow, editingColumn },
+export const editActiveCell = value => ({
+  type    : 'TABLE_EDIT_ACTIVE_CELL',
+  payload : { value }
+})
+
+export const setActiveCell = (activeRow, activeColumn) => ({
+  type    : 'TABLE_SET_ACTIVE_CELL',
+  payload : { activeRow, activeColumn },
 });
 
-export const moveEditingCell = direction => ({
-  type    : 'TABLE_MOVE_EDITING_CELL',
+export const moveActiveCell = direction => ({
+  type    : 'TABLE_MOVE_ACTIVE_CELL',
   payload : { direction },
 });
 
