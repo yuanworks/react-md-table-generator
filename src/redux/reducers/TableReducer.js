@@ -9,7 +9,7 @@ const initialState = Map({
   rowCount    : 3,
   columnCount : 3,
 
-  maxColumnLength : Map(),
+  maxColumnLength : List(),
 
   rows: List([
     List(['','','']),
@@ -59,16 +59,19 @@ export default function table(state = initialState, action) {
     }
 
     case 'TABLE_INSERT_COLUMN': {
-      const columnCount = state.get('columnCount');
-      let rows = state.get('rows')
+      const { columnIndex } = action.payload;
 
-      rows = rows.map(row => row.insert(action.payload.columnIndex, ''));
-
-      console.log('RESET maxColumnLength');
+      const columnCount = state.get('columnCount') + 1;
+      
+      let rows = state.get('rows');
+      rows = rows.map(row => row.insert(columnIndex, ''));
+      
+      const maxColumnLength = state.get('maxColumnLength').insert(columnIndex, TableUtil.calculateMaxLength(rows), columnIndex);
       
       return state.merge({
-        columnCount: columnCount + 1,
+        columnCount,
         rows,
+        maxColumnLength,
       });
     }
 
@@ -127,7 +130,7 @@ export default function table(state = initialState, action) {
       const { rowCount, columnCount } = TableUtil.getDimensions(rows);
 
       return state.merge({
-        rows          : fromJS(rows),
+        rows            : fromJS(rows),
         maxColumnLength : fromJS(maxColumnLength),
         rowCount,
         columnCount,
