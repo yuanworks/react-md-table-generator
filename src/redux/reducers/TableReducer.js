@@ -6,7 +6,9 @@ const initialState = Map({
   // Editing or highlighted row, column index:
   activeRow    : null,
   activeColumn : null,
-  editingFrom  : null,
+
+  // If the cell is being directly edited (true if cell, false if toolbar)
+  editingCell  : null,
   
   // Total number of rows and columns:
   rowCount    : 3,
@@ -33,7 +35,7 @@ export default function table(state = initialState, action) {
       const rowCount = state.get('rowCount');
       const columnCount = state.get('columnCount');
 
-      let { rowIndex, columnIndex, value } = payload;
+      let { rowIndex, columnIndex, editingCell, value } = payload;
 
       if (rowIndex === undefined && columnIndex === undefined) {
         rowIndex = state.get('activeRow');
@@ -41,6 +43,8 @@ export default function table(state = initialState, action) {
       }
 
       return state.withMutations(state => {
+
+        state.set('editingCell', editingCell);
 
         if (rowIndex === rowCount) {
           state.set('rowCount', rowIndex + 1);

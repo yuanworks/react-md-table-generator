@@ -3,6 +3,7 @@ const TABLE = {
     rows            : 'rows',
     rowCount        : 'rowCount',
     columnCount     : 'columnCount',
+    editingCell     : 'editingCell',
     activeRow       : 'activeRow',
     activeColumn    : 'activeColumn',
     maxColumnLength : 'maxColumnLength',

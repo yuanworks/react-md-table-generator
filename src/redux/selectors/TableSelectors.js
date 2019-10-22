@@ -21,7 +21,7 @@ export const isLastColumn = columnIndex => function(state) {
 };
 
 export const isEditingCell = (rowIndex, columnIndex) => function(state) {
-  return state.table.get(TABLE.State.activeRow) === rowIndex && state.table.get(TABLE.State.activeColumn) === columnIndex
+  return state.table.get(TABLE.State.activeRow) === rowIndex && state.table.get(TABLE.State.activeColumn) === columnIndex && state.table.get(TABLE.State.editingCell)
 };
 
 export const isEditingRow = rowIndex => function(state) {
