@@ -47,7 +47,8 @@ The server will start on `http://localhost:3003`.
 - [x] escape | characters
 - [x] Change implementation to table
 - [ ] Menu bar
-- [ ] Input bar like excel for table row
+- [x] Input bar like excel for table row
+- [ ] -> when clearing focus, it should disable the input bar and clear it
 - [x] insert extra cells
 - [ ] Render markdown->html inside cells
 - [x] Delete row functionality

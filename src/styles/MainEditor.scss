@@ -2,6 +2,13 @@
 
   height: 100%;
 
+  .cell-value-input {
+    width: 100%;
+    font-size: 14px;
+    padding: 4px;
+    font-family: inherit;
+  }
+
   .pane-view {
     display: flex;
     height: 100%;
