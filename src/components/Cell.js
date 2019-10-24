@@ -26,7 +26,6 @@ export default function Cell({ rowIndex, columnIndex }) {
   const editableRef = useRef();
 
   if (editingCell && editableRef) {
-    const WARNING_NEED_TO_NOT_CHANGE_FOCUS = '';
     editableRef.current.el.current.focus();
   }
 
