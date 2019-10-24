@@ -1,6 +1,6 @@
 # React Markdown Table Generator
 
-Creating Markdown Tables without having to be an ascii art professional.
+Easily create Markdown Tables without having to be an Ascii Art professional.
 
 ![react_md_table](https://user-images.githubusercontent.com/3508123/66262015-18d2c680-e813-11e9-8885-29439a869849.gif)
 
