@@ -68,8 +68,13 @@ export function calculateMaxLength(immutableRows, columnIndex) {
   let maxColumnLength = 0;
 
   immutableRows.forEach(row => {
-    const cellLength = (row.get(columnIndex) && row.get(columnIndex).length) || 0;
-    maxColumnLength = Math.max(cellLength, maxColumnLength);
+    let cell = row.get(columnIndex) || '';
+
+    if (cell.endsWith('<br>')) {
+      cell = cell.slice(0, -4);
+    }
+
+    maxColumnLength = Math.max(cell.length, maxColumnLength);
   });
 
   return maxColumnLength;
@@ -80,11 +85,15 @@ export function unescapeMarkdown(markdown) {
   
   string = string.replace(/\\\|/g, '|');
 
+  const lines = string.split('<br>');
+
   for (let key in HTML_ENTITIES) {
-    string = string.replace(new RegExp(HTML_ENTITIES[key], 'g'), key);
+    for (let i = 0; i < lines.length; i++) {
+      lines[i] = lines[i].replace(new RegExp(HTML_ENTITIES[key], 'g'), key);
+    }
   }
 
-  return string;
+  return lines.join('<br>'); // + (lines[lines.length-1] === '' ? '<br>' : '');
 }
 
 const HTML_ENTITIES = {
@@ -92,11 +101,12 @@ const HTML_ENTITIES = {
   '&lt;'   : '<',
   '&gt;'   : '>',
   '&nbsp;' : ' ',
+  //'<br><br>'   : '<br>',
 };
 
 export function htmlToMarkdown(html) {
   let markdown = html || '';
-
+  
   for (let key in HTML_ENTITIES) {
     markdown = markdown.replace(new RegExp(key, 'g'), HTML_ENTITIES[key]);
   }

@@ -22,7 +22,8 @@ table.editable {
     transition: 0.5s all;
 
     .cell-value {
-      display: block;
+      display: inline-block;
+      width: 100%;
       padding: 8px 14px;
     }
 

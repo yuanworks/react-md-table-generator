@@ -67,8 +67,11 @@ The server will start on `http://localhost:3003`.
 - [ ] CI tests + coverage
 
 ### Issues / bugs
-- [ ] Capture "Enter" to avoid empty div's and br's
+- [x] Chrome -> Enters add newlines
 - [ ] Firefox / Chrome works differently (spaces and enters)
+- [ ] Check firefox
+- [ ] Check safari/opera
+- [ ] Check IE
 
 ## LICENSE
 
