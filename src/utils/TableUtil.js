@@ -93,7 +93,7 @@ export function unescapeMarkdown(markdown) {
     }
   }
 
-  return lines.join('<br>'); // + (lines[lines.length-1] === '' ? '<br>' : '');
+  return lines.join('<br>');
 }
 
 const HTML_ENTITIES = {
@@ -101,7 +101,6 @@ const HTML_ENTITIES = {
   '&lt;'   : '<',
   '&gt;'   : '>',
   '&nbsp;' : ' ',
-  //'<br><br>'   : '<br>',
 };
 
 export function htmlToMarkdown(html) {

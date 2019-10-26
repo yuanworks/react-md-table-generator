@@ -13,6 +13,11 @@ export const setActiveCell = (activeRow, activeColumn) => ({
   payload : { activeRow, activeColumn },
 });
 
+export const clearActiveCell = () => ({
+  type: 'TABLE_CLEAR_ACTIVE_CELL',
+  payload : {},
+})
+
 export const moveActiveCell = direction => ({
   type    : 'TABLE_MOVE_ACTIVE_CELL',
   payload : { direction },

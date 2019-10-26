@@ -1,12 +1,22 @@
 import TABLE from "../../constants/TableConstants";
 
-export const getEditingCellValue = () => function(state) {
-  return state.table.getIn([ TABLE.State.rows, state.table.get(TABLE.State.activeRow), state.table.get(TABLE.State.activeColumn) ]);
+export const getEditingCellValue = options => function(state) {
+  return cellValueFromState(state, state.table.get(TABLE.State.activeRow), state.table.get(TABLE.State.activeColumn), options);
 }
 
-export const getCellValue = (rowIndex, columnIndex) => function(state) {
-  return state.table.getIn([ TABLE.State.rows, rowIndex, columnIndex ]);
+export const getCellValue = (rowIndex, columnIndex, options) => function(state) {
+  return cellValueFromState(state, rowIndex, columnIndex, options);
 };
+
+function cellValueFromState(state, rowIndex, columnIndex, options = {}) {
+  let value = state.table.getIn([ TABLE.State.rows, rowIndex, columnIndex ]);
+
+  if (options.removeLastBR && value && value.endsWith('<br>')) {
+    value = value.slice(0, -4);
+  }
+
+  return value;
+}
 
 export const getRowCount = () => function(state) {
   return state.table.get(TABLE.State.rowCount);

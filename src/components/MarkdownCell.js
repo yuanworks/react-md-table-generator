@@ -4,13 +4,9 @@ import * as TableSelectors from '../redux/selectors/TableSelectors';
 
 export default function MarkdownCell({ rowIndex, columnIndex }) {
 
-  let value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
+  let value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex, { removeLastBR: true }));
   const lastColumn = useSelector(TableSelectors.isLastColumn(columnIndex));
   let maxColumnLength = useSelector(TableSelectors.getMaxColumnLength(columnIndex));
-
-  if (value.endsWith('<br>')) {
-    value = value.slice(0, -4);
-  }
 
   maxColumnLength = Math.max(maxColumnLength, 3);
 

@@ -57,6 +57,7 @@ The server will start on `http://localhost:3003`.
 - [ ] Add UNDO
 - [ ] Option to remove filling whitespaces
 - [x] Insert at position for rows/column
+- [x] Remove input bar / delete / add column icons when unfocusing table
 
 ### CSS
 - [x] Column view for panes

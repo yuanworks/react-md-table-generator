@@ -113,6 +113,7 @@ export default function table(state = initialState, action) {
       });
     }
 
+    case 'TABLE_CLEAR_ACTIVE_CELL':
     case 'TABLE_SET_ACTIVE_CELL': {
       const { activeRow, activeColumn } = payload;
       return state.merge({ activeRow, activeColumn });
