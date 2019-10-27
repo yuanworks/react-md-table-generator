@@ -101,6 +101,8 @@ const HTML_ENTITIES = {
   '&lt;'   : '<',
   '&gt;'   : '>',
   '&nbsp;' : ' ',
+  //'<b>'    : '**',
+  //'</b>'   : '**',
 };
 
 export function htmlToMarkdown(html) {

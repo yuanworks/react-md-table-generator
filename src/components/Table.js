@@ -10,12 +10,11 @@ import '../styles/Table.scss';
 export default function Table() {
 
   const dispatch = useDispatch();
-  const clearActiveCell = () => dispatch(TableActions.clearActiveCell());
   const rowCount = useSelector(TableSelectors.getRowCount());
   const rows = Array(rowCount+1).fill(0);
 
   return (
-    <table className='editable' onBlur={clearActiveCell}>
+    <table className='editable' onBlur={e => console.log('blur', e.target)}>
 
       <tbody>
         <Row key='delete-row' deleteRow />
