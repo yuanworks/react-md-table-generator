@@ -77,3 +77,9 @@ The server will start on `http://localhost:3003`.
 ## LICENSE
 
 TBD.
+
+Test Table:
+
+| Column 1 | Column 2      |
+|:--------:|---------------:|
+|  | `right-aligned` |

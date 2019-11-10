@@ -61,6 +61,23 @@ export default function table(state = initialState, action) {
       });
     }
 
+    case 'TABLE_FORMAT_ACTIVE_CELL': {
+
+      const { start, end, tag } = action.payload;
+      const activeRow = state.get('activeRow');
+      const activeColumn = state.get('activeColumn');
+
+      let value = state.getIn([ 'rows', activeRow, activeColumn ]);
+
+      let format = [];
+
+      format.push(value.substring(0, start));
+      format.push(`<${tag}>${value.substring(start, end)}</${tag}>`);
+      format.push(value.substring(end));
+
+      return state.setIn(['rows', activeRow, activeColumn], format.join(''));
+    }
+
     case 'TABLE_INSERT_ROW': {
       const rowCount = state.get('rowCount');
       let rows = state.get('rows');

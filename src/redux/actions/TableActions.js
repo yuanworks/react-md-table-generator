@@ -6,7 +6,12 @@ export const editCell = (rowIndex, columnIndex, value, editingCell) => ({
 export const editActiveCell = value => ({
   type    : 'TABLE_EDIT_ACTIVE_CELL',
   payload : { value }
-})
+});
+
+export const formatActiveCell = (start, end, tag) => ({
+  type    : 'TABLE_FORMAT_ACTIVE_CELL',
+  payload : { start, end, tag }
+});
 
 export const setActiveCell = (activeRow, activeColumn) => ({
   type    : 'TABLE_SET_ACTIVE_CELL',
