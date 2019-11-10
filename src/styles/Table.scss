@@ -28,6 +28,16 @@ table.editable {
       line-height: 21px;
     }
 
+    .align {
+      &-center {
+        text-align: center;
+      }
+
+      &-right {
+        text-align: right;
+      }
+    }
+
     &.table-head {
       text-align: center;
       font-weight: 700;

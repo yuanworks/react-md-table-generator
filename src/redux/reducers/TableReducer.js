@@ -17,6 +17,9 @@ const initialState = Map({
   // Max string length per column index:
   maxColumnLength : List(),
 
+  // Alignment for columns (null, 'left', 'center', 'right'):
+  columnsAlignment: List(),
+
   // List of rows (column sized):
   rows: List([
     List(['','','']),
@@ -128,6 +131,11 @@ export default function table(state = initialState, action) {
         rows,
         columnCount: columnCount - 1,
       });
+    }
+    
+    case 'TABLE_SET_COLUMN_ALIGNMENT': {
+      const { columnIndex, alignment } = payload;
+      return state.setIn([ 'columnsAlignment', columnIndex ], alignment);
     }
 
     case 'TABLE_CLEAR_ACTIVE_CELL':

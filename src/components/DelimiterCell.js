@@ -6,6 +6,7 @@ export default function DelimiterCell({ columnIndex }) {
   
   const lastColumn = useSelector(TableSelectors.isLastColumn(columnIndex));
   const maxColumnLength = useSelector(TableSelectors.getMaxColumnLength(columnIndex));
+  const columnAlignment = useSelector(TableSelectors.getColumnAlignment(columnIndex));
 
   let delimiters = '---';
 
@@ -13,8 +14,11 @@ export default function DelimiterCell({ columnIndex }) {
     delimiters = Array(maxColumnLength).fill('-').join('');
   }
 
+  const leftAlign = (columnAlignment === 'left' || columnAlignment === 'center')? ':' : ' ';
+  const rightAlign = (columnAlignment === 'right' || columnAlignment === 'center')? ':' : ' ';
+
   return (
-    <span>| {delimiters} { lastColumn && '|'}</span>
+    <span>|{leftAlign}{delimiters}{rightAlign}{lastColumn && '|'}</span>
   );
 
 }

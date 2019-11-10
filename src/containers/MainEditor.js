@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import * as TableActions from '../redux/actions/TableActions';
+import * as TableSelectors from '../redux/selectors/TableSelectors';
 import { TABLE_SAMPLE } from '../constants/TableConstants';
 
 import Table from "../components/Table";
@@ -10,6 +11,7 @@ import MarkdownTable from "../components/MarkdownTable";
 import '../styles/MainEditor.scss';
 import CellValueInput from '../components/CellValueInput';
 
+
 export default function MainEditor() {
 
   const editorPaneRef = useRef();
@@ -17,6 +19,8 @@ export default function MainEditor() {
 
   const dispatch = useDispatch();
   useEffect(() => { dispatch(TableActions.importMarkdownTable(TABLE_SAMPLE)) }, [dispatch]);
+
+  const activeColumn = useSelector(TableSelectors.getActiveColumn());
   
   const clearActiveCell = e => {
     
@@ -38,11 +42,21 @@ export default function MainEditor() {
       dispatch(TableActions.formatActiveCell(selection.anchorOffset, selection.focusOffset, 'code'));
     }
   }
-  
+
+  const setColumnAlignment = alignment => dispatch(TableActions.setColumnAlignment(activeColumn, alignment));
+  const alignLeft = () => setColumnAlignment('left');
+  const alignCenter = () => setColumnAlignment('center');
+  const alignRight = () => setColumnAlignment('right');
+
   return (
     <div className='main-editor'>
       <CellValueInput />
-      <button onClick={AddCode}>HODOR</button>
+      <button onClick={AddCode}>Code</button>
+
+      <button onClick={alignLeft}>Left</button>
+      <button onClick={alignCenter}>Center</button>
+      <button onClick={alignRight}>Right</button>
+
       <div className='pane-view'>
         <div className='editor-pane' ref={editorPaneRef} onMouseDown={clearActiveCell}><Table /></div>
         <div className='markdown-pane' ref={markdownPaneRef} onMouseDown={clearActiveCell}><MarkdownTable /></div>

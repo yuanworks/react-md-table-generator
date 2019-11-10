@@ -38,6 +38,11 @@ export const isEditingRow = rowIndex => function(state) {
   return rowIndex !== undefined && state.table.get(TABLE.State.activeRow) === rowIndex;
 };
 
+export const getActiveColumn = () => function(state) {
+  return state.table.get('activeColumn');
+}
+
+//! This can be removed and just use getActiveColumn() === columnIndex
 export const isEditingColumn = columnIndex => function(state) {
   return columnIndex !== undefined && state.table.get(TABLE.State.activeColumn) === columnIndex;
 };
@@ -51,4 +56,8 @@ export const isExtraCell = (rowIndex, columnIndex = undefined) => function(state
     (rowIndex !== undefined && state.table.get(TABLE.State.rowCount) === rowIndex) ||
     (columnIndex !== undefined && state.table.get(TABLE.State.columnCount) === columnIndex)
   );
+};
+
+export const getColumnAlignment = (columnIndex) => function(state) {
+  return state.table.getIn([ 'columnsAlignment', columnIndex ]);
 };

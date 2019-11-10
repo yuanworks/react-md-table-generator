@@ -48,16 +48,19 @@ The server will start on `http://localhost:3003`.
 - [x] Change implementation to table
 - [ ] Menu bar
 - [x] Input bar like excel for table row
-- [ ] -> when clearing focus, it should disable the input bar and clear it
+- [x] -> when clearing focus, it should disable the input bar and clear it
 - [x] insert extra cells
 - [ ] Render markdown->html inside cells
 - [x] Delete row functionality
 - [x] Delete column functionality
 - [x] React Spring for Delete Cell fade animation
 - [ ] Add UNDO
-- [ ] Option to remove filling whitespaces
 - [x] Insert at position for rows/column
 - [x] Remove input bar / delete / add column icons when unfocusing table
+
+### FORMATTING
+- [x] Alignment for columns
+- [ ] Option to remove filling whitespaces
 
 ### CSS
 - [x] Column view for panes

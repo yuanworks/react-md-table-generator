@@ -13,6 +13,11 @@ export const formatActiveCell = (start, end, tag) => ({
   payload : { start, end, tag }
 });
 
+export const setColumnAlignment = (columnIndex, alignment) => ({
+  type    : 'TABLE_SET_COLUMN_ALIGNMENT',
+  payload : { columnIndex, alignment }
+});
+
 export const setActiveCell = (activeRow, activeColumn) => ({
   type    : 'TABLE_SET_ACTIVE_CELL',
   payload : { activeRow, activeColumn },

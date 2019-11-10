@@ -14,6 +14,7 @@ export default function Cell({ rowIndex, columnIndex }) {
   
   const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
   const isExtraCell = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
+  const columnAlignment = useSelector(TableSelectors.getColumnAlignment(columnIndex));
   
   const dispatch         = useDispatch();
   const editCell         = e => dispatch(TableActions.editCell(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value), true));
@@ -61,7 +62,7 @@ export default function Cell({ rowIndex, columnIndex }) {
         onChange={editCell}
         onFocus={setActiveCell}
         /*onBlur={clearEditingCell}*/
-        className='cell-value'
+        className={classnames('cell-value', { ['align-'+columnAlignment]: columnAlignment })}
         onKeyDown={handleKeyPress}
       />
     </td>
