@@ -19,14 +19,30 @@ export default function MainEditor() {
   useEffect(() => { dispatch(TableActions.importMarkdownTable(TABLE_SAMPLE)) }, [dispatch]);
   
   const clearActiveCell = e => {
+    
     if (e.target === editorPaneRef.current || e.target === markdownPaneRef.current) {
       dispatch(TableActions.clearActiveCell());
+    }
+  }
+
+  const AddCode = e => {
+    console.log(window.getSelection());
+
+    const selection = window.getSelection();
+
+    console.log(selection.anchorNode.parentNode.className);
+    
+    if (selection.anchorNode.parentNode.className === 'cell-value') {
+      console.log('CELL!');
+
+      dispatch(TableActions.formatActiveCell(selection.anchorOffset, selection.focusOffset, 'code'));
     }
   }
   
   return (
     <div className='main-editor'>
       <CellValueInput />
+      <button onClick={AddCode}>HODOR</button>
       <div className='pane-view'>
         <div className='editor-pane' ref={editorPaneRef} onMouseDown={clearActiveCell}><Table /></div>
         <div className='markdown-pane' ref={markdownPaneRef} onMouseDown={clearActiveCell}><MarkdownTable /></div>
