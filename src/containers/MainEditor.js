@@ -10,6 +10,7 @@ import MarkdownTable from "../components/MarkdownTable";
 
 import '../styles/MainEditor.scss';
 import CellValueInput from '../components/CellValueInput';
+import Button from '../components/layout/Button';
 
 
 export default function MainEditor() {
@@ -43,7 +44,12 @@ export default function MainEditor() {
     }
   }
 
-  const setColumnAlignment = alignment => dispatch(TableActions.setColumnAlignment(activeColumn, alignment));
+  const columnAlignment = useSelector(TableSelectors.getColumnAlignment(activeColumn));
+  
+  const setColumnAlignment = alignment => {
+    dispatch(TableActions.setColumnAlignment(activeColumn, (alignment !== columnAlignment) ? alignment : null));
+  };
+
   const alignLeft = () => setColumnAlignment('left');
   const alignCenter = () => setColumnAlignment('center');
   const alignRight = () => setColumnAlignment('right');
@@ -53,9 +59,9 @@ export default function MainEditor() {
       <CellValueInput />
       <button onClick={AddCode}>Code</button>
 
-      <button onClick={alignLeft}>Left</button>
-      <button onClick={alignCenter}>Center</button>
-      <button onClick={alignRight}>Right</button>
+      <Button onClick={alignLeft} selected={columnAlignment === 'left'}>Left</Button>{' '}
+      <Button onClick={alignCenter} selected={columnAlignment === 'center'}>Center</Button>{' '}
+      <Button onClick={alignRight} selected={columnAlignment === 'right'}>Right</Button>
 
       <div className='pane-view'>
         <div className='editor-pane' ref={editorPaneRef} onMouseDown={clearActiveCell}><Table /></div>

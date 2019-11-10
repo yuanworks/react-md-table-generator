@@ -60,7 +60,11 @@ The server will start on `http://localhost:3003`.
 
 ### FORMATTING
 - [x] Alignment for columns
+- [x] Clear alignment if already selected
 - [ ] Option to remove filling whitespaces
+
+### LAYOUT
+- [x] Button component
 
 ### CSS
 - [x] Column view for panes
