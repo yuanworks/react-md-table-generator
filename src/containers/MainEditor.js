@@ -19,7 +19,6 @@ export default function MainEditor() {
   useEffect(() => { dispatch(TableActions.importMarkdownTable(TABLE_SAMPLE)) }, [dispatch]);
   
   const clearActiveCell = e => {
-    
     if (e.target === editorPaneRef.current || e.target === markdownPaneRef.current) {
       dispatch(TableActions.clearActiveCell());
     }

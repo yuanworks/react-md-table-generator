@@ -10,13 +10,13 @@ import { TiPlusOutline } from 'react-icons/ti';
 
 export default function Cell({ rowIndex, columnIndex }) {
   const value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
-  const unescapedString = TableUtil.unescapeMarkdown(value);
+  //const unescapedString = TableUtil.unescapeMarkdown(value);
   
   const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
   const isExtraCell = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
   
   const dispatch         = useDispatch();
-  const editCell         = e => dispatch(TableActions.editCell(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value), true));
+  const editCell         = e => dispatch(TableActions.editCell(rowIndex, columnIndex, TableUtil.inlineParse(e.target.value), true));
   const moveActiveCell  = direction => dispatch(TableActions.moveActiveCell(direction));
   const setActiveCell   = () => dispatch(TableActions.setActiveCell(rowIndex, columnIndex));
   const clearEditingCell = () => dispatch(TableActions.setActiveCell());
@@ -57,7 +57,7 @@ export default function Cell({ rowIndex, columnIndex }) {
       }
       <ContentEditable
         ref={editableRef}
-        html={unescapedString || ''}
+        html={value || ''}
         onChange={editCell}
         onFocus={setActiveCell}
         /*onBlur={clearEditingCell}*/

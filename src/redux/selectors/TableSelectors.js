@@ -1,18 +1,19 @@
 import TABLE from "../../constants/TableConstants";
+import * as TableUtil from '../../utils/TableUtil';
 
-export const getEditingCellValue = options => function(state) {
-  return cellValueFromState(state, state.table.get(TABLE.State.activeRow), state.table.get(TABLE.State.activeColumn), options);
+export const getEditingCellValue = toMarkdown => function(state) {
+  return cellValueFromState(state, state.table.get(TABLE.State.activeRow), state.table.get(TABLE.State.activeColumn), toMarkdown);
 }
 
-export const getCellValue = (rowIndex, columnIndex, options) => function(state) {
-  return cellValueFromState(state, rowIndex, columnIndex, options);
+export const getCellValue = (rowIndex, columnIndex, toMarkdown) => function(state) {
+  return cellValueFromState(state, rowIndex, columnIndex, toMarkdown);
 };
 
-function cellValueFromState(state, rowIndex, columnIndex, options = {}) {
+function cellValueFromState(state, rowIndex, columnIndex, toMarkdown = false) {
   let value = state.table.getIn([ TABLE.State.rows, rowIndex, columnIndex ]);
 
-  if (options.removeLastBR && value && value.endsWith('<br>')) {
-    value = value.slice(0, -4);
+  if (toMarkdown && value) {
+    value = TableUtil.htmlToMarkdown(value);
   }
 
   return value;

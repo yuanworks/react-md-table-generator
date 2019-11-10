@@ -37,8 +37,15 @@ export function parseMarkdown(markdown) {
 
     let rowIndex = 0;
 
-    parsedRow.forEach(row => {
-      const trimRow = row.trim();
+    parsedRow.forEach(cell => {
+      let trimRow = this.markdownToHtml(cell.trim());
+
+      trimRow = trimRow.replace(/\\\|/g, '|');
+      
+      // this rule is not working :S
+      trimRow = trimRow.replace( new RegExp('\\\|', 'g'), '|');
+      
+      //trimRow = trimRow.split('\\|').join('|');
       
       if (trimRow) {
         rows[rows.length -1].push(trimRow);
@@ -70,9 +77,7 @@ export function calculateMaxLength(immutableRows, columnIndex) {
   immutableRows.forEach(row => {
     let cell = row.get(columnIndex) || '';
 
-    if (cell.endsWith('<br>')) {
-      cell = cell.slice(0, -4);
-    }
+    cell = this.htmlToMarkdown(cell);
 
     maxColumnLength = Math.max(cell.length, maxColumnLength);
   });
@@ -80,20 +85,24 @@ export function calculateMaxLength(immutableRows, columnIndex) {
   return maxColumnLength;
 }
 
-export function unescapeMarkdown(markdown) {
-  let string = markdown || '';
-  
-  string = string.replace(/\\\|/g, '|');
+const MARKDOWN_TO_HTML = [
+  { pattern: '\\*\\*(.*)\\*\\*', replacer: (_, p) => {console.log(_, p); return `<b>${p}</b>`} },
+  { pattern: '\\*(.*)\\*', replacer: (_, p) => {console.log(_, p); return `<i>${p}</i>`} },
+  // this rule doesn't work ? { pattern: '\\\|', replacer: '|' }, //(...args) => { console.log(args); return '+' }} //'(CA)' },
+]
 
-  const lines = string.split('<br>');
+export function markdownToHtml(markdown) {
+  let html = markdown || '';
 
-  for (let key in HTML_ENTITIES) {
-    for (let i = 0; i < lines.length; i++) {
-      lines[i] = lines[i].replace(new RegExp(HTML_ENTITIES[key], 'g'), key);
-    }
+  console.log(html);
+
+  for (let rule of MARKDOWN_TO_HTML) {
+    html = html.replace(new RegExp(rule.pattern, 'g'), rule.replacer);
   }
 
-  return lines.join('<br>');
+  console.log(html);
+
+  return html;
 }
 
 const HTML_ENTITIES = {
@@ -101,12 +110,22 @@ const HTML_ENTITIES = {
   '&lt;'   : '<',
   '&gt;'   : '>',
   '&nbsp;' : ' ',
-  //'<b>'    : '**',
-  //'</b>'   : '**',
+  //'\*'     : '<b>',
+  //'<\/b>'   : '**',
 };
+
+const HTML_TO_MARKDOWN = [
+  { pattern: '<b>(.*?)<\/b>', replacer: (match, p) => {console.log(match, p); return `**${p}**`} },
+  { pattern: '<i>(.*?)<\/i>', replacer: (match, p) => {console.log(match, p); return `*${p}*`} },
+  { pattern: '<code>(.*?)</code>', replacer: (_, p) => `\`${p}\``}
+];
 
 export function htmlToMarkdown(html) {
   let markdown = html || '';
+
+  for (let rule of HTML_TO_MARKDOWN) {
+    markdown = markdown.replace(new RegExp(rule.pattern, 'g'), rule.replacer);
+  }
   
   for (let key in HTML_ENTITIES) {
     markdown = markdown.replace(new RegExp(key, 'g'), HTML_ENTITIES[key]);
@@ -114,5 +133,13 @@ export function htmlToMarkdown(html) {
 
   markdown = markdown.replace(/\|/g, '\\|');
 
+  if (markdown.endsWith('<br>')) {
+    markdown = markdown.slice(0, -4);
+  }
+
   return markdown;
+}
+
+export function inlineParse(html) {
+  return html.replace(/`(.+?)`/g, (_, p) => ` <code>${p}</code> &nbsp;`);
 }
