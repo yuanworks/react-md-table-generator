@@ -54,9 +54,12 @@ The server will start on `http://localhost:3003`.
 - [x] Delete row functionality
 - [x] Delete column functionality
 - [x] React Spring for Delete Cell fade animation
-- [ ] Add UNDO
+- [ ] Add undo / redo
 - [x] Insert at position for rows/column
 - [x] Remove input bar / delete / add column icons when unfocusing table
+
+### Main Editor
+- [x] Movement up/down with CTRL/CMD key held
 
 ### Formatting
 - [x] Alignment for columns
@@ -91,6 +94,8 @@ TBD.
 
 Test Table:
 
-| Column 1 | Column 2      |
-|:--------:|---------------:|
-|  | `right-aligned` |
+| Default Alignment | Center | Right |
+| --- |:---:|----:|
+| With \| Pipe | First **Row** 2 | First Row 3 |
+| Second Row 1 | Second Row 2 | Second Row 3 |
+| `Code` | *Italics* | **Bold** |

@@ -181,6 +181,7 @@ export default function table(state = initialState, action) {
     case 'TABLE_IMPORT_DATA': {
       const { rows, maxColumnLength, columnsAlignment } = TableUtil.parseMarkdown(action.payload.markdown);
       const immutableRows = fromJS(rows);
+      
       const { rowCount, columnCount } = TableUtil.getDimensions(immutableRows);
 
       return state.merge({
