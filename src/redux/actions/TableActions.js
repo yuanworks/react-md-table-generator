@@ -29,7 +29,7 @@ export const setActiveCell = (activeRow, activeColumn) => ({
 
 export const clearActiveCell = () => ({
   type: 'TABLE_CLEAR_ACTIVE_CELL',
-})
+});
 
 export const moveActiveCell = direction => ({
   type    : 'TABLE_MOVE_ACTIVE_CELL',

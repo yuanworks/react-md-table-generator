@@ -148,6 +148,11 @@ export default function table(state = initialState, action) {
     }
 
     case 'TABLE_CLEAR_ACTIVE_CELL':
+      return state.set({
+        activeRow    : null,
+        activeColumn : null,
+      });
+    
     case 'TABLE_SET_ACTIVE_CELL': {
       const { activeRow, activeColumn } = payload;
       return state.merge({ activeRow, activeColumn });
