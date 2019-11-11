@@ -43,8 +43,14 @@ export const getActiveColumn = () => function(state) {
 }
 
 //! This can be removed and just use getActiveColumn() === columnIndex
+const WARNING_REMOVE_FOLLOWING_METHOD = '';
+
 export const isEditingColumn = columnIndex => function(state) {
   return columnIndex !== undefined && state.table.get(TABLE.State.activeColumn) === columnIndex;
+};
+
+export const getAdjustWidth = () => function(state) {
+  return state.table.get('adjustWidth');
 };
 
 export const getMaxColumnLength = rowIndex => function(state) {

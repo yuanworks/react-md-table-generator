@@ -14,6 +14,9 @@ const initialState = Map({
   rowCount    : 3,
   columnCount : 3,
 
+  // Extra whitespace on each column to adjust them vertically:
+  adjustWidth : true,
+
   // Max string length per column index:
   maxColumnLength : List(),
 
@@ -35,6 +38,7 @@ export default function table(state = initialState, action) {
 
     case 'TABLE_EDIT_CELL':
     case 'TABLE_EDIT_ACTIVE_CELL': {
+      console.log('hodor')
       const rowCount = state.get('rowCount');
       const columnCount = state.get('columnCount');
 
@@ -136,6 +140,11 @@ export default function table(state = initialState, action) {
     case 'TABLE_SET_COLUMN_ALIGNMENT': {
       const { columnIndex, alignment } = payload;
       return state.setIn([ 'columnsAlignment', columnIndex ], alignment);
+    }
+
+    case 'TABLE_TOGGLE_ADJUST_WIDTH': {
+      const adjustWidth = state.get('adjustWidth');
+      return state.set('adjustWidth', !adjustWidth);
     }
 
     case 'TABLE_CLEAR_ACTIVE_CELL':

@@ -10,6 +10,7 @@ import MarkdownTable from "../components/MarkdownTable";
 import '../styles/MainEditor.scss';
 import CellValueInput from '../components/CellValueInput';
 import AlignButton from '../components/toolbar/AlignButton';
+import AdjustWidthButton from '../components/toolbar/AdjustWidthButton';
 
 export default function MainEditor() {
 
@@ -48,6 +49,8 @@ export default function MainEditor() {
       <AlignButton alignment='left' />
       <AlignButton alignment='center' />
       <AlignButton alignment='right' />
+
+      <AdjustWidthButton />
 
       <div className='pane-view'>
         <div className='editor-pane' ref={editorPaneRef} onMouseDown={clearActiveCell}><Table /></div>

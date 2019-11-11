@@ -18,6 +18,10 @@ export const setColumnAlignment = (columnIndex, alignment) => ({
   payload : { columnIndex, alignment }
 });
 
+export const toggleAdjustWidth = () => ({
+  type: 'TABLE_TOGGLE_ADJUST_WIDTH',
+});
+
 export const setActiveCell = (activeRow, activeColumn) => ({
   type    : 'TABLE_SET_ACTIVE_CELL',
   payload : { activeRow, activeColumn },
@@ -25,7 +29,6 @@ export const setActiveCell = (activeRow, activeColumn) => ({
 
 export const clearActiveCell = () => ({
   type: 'TABLE_CLEAR_ACTIVE_CELL',
-  payload : {},
 })
 
 export const moveActiveCell = direction => ({
