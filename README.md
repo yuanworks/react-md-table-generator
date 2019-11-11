@@ -58,16 +58,19 @@ The server will start on `http://localhost:3003`.
 - [x] Insert at position for rows/column
 - [x] Remove input bar / delete / add column icons when unfocusing table
 
-### FORMATTING
+### Formatting
 - [x] Alignment for columns
 - [x] Clear alignment if already selected
-- [ ] Option to remove filling whitespaces
+- [x] Option to remove filling whitespaces
 
-### LAYOUT
+### Layout
 - [x] Button component
 
 ### CSS
 - [x] Column view for panes
+
+### Parser
+- [x] Parse text alignment
 
 ### Tests
 - [x] Set puppeteer for E2E testing
@@ -80,6 +83,7 @@ The server will start on `http://localhost:3003`.
 - [ ] Check firefox
 - [ ] Check safari/opera
 - [ ] Check IE
+- [ ] Deleting all text inside a cell on chrome sometimes doesn't trigger onChange event
 
 ## LICENSE
 

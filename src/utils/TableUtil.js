@@ -3,12 +3,33 @@ export function parseMarkdown(markdown) {
   const lines = markdown.match(/.+/g);
   const rows = [];
   const maxColumnLength = [];
+  const columnsAlignment = [];
 
   lines.forEach((line, i) => {
  
     // Headers must always exists for most parsers, so we assume this line is the delimiter:
     if (i === 1) {
-      // TODO: parse text alignment
+      const delimiters = line.split(/\|/g);
+      
+      for (let row of delimiters) {
+        
+        if (row.trim().length > 0) {
+          if (row.split(":").length === 3) {
+            columnsAlignment.push('center')
+          }
+          else if (row.includes(":---")) {
+            columnsAlignment.push('left');
+          }
+          else if (row.includes("---:")) {
+            columnsAlignment.push('right');
+          }
+          else {
+            columnsAlignment.push(null);
+          }
+        }
+        
+      }
+
       return;
     }
 
@@ -49,7 +70,7 @@ export function parseMarkdown(markdown) {
     })
   });
 
-  return { rows, maxColumnLength };
+  return { rows, maxColumnLength, columnsAlignment };
 }
 
 export function getDimensions(immutableRows) {

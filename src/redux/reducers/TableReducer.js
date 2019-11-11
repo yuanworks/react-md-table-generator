@@ -38,7 +38,6 @@ export default function table(state = initialState, action) {
 
     case 'TABLE_EDIT_CELL':
     case 'TABLE_EDIT_ACTIVE_CELL': {
-      console.log('hodor')
       const rowCount = state.get('rowCount');
       const columnCount = state.get('columnCount');
 
@@ -180,13 +179,14 @@ export default function table(state = initialState, action) {
     }
 
     case 'TABLE_IMPORT_DATA': {
-      let { rows, maxColumnLength } = TableUtil.parseMarkdown(action.payload.markdown);
-      rows = fromJS(rows);
-      const { rowCount, columnCount } = TableUtil.getDimensions(rows);
+      const { rows, maxColumnLength, columnsAlignment } = TableUtil.parseMarkdown(action.payload.markdown);
+      const immutableRows = fromJS(rows);
+      const { rowCount, columnCount } = TableUtil.getDimensions(immutableRows);
 
       return state.merge({
-        rows            : fromJS(rows),
-        maxColumnLength : fromJS(maxColumnLength),
+        rows             : immutableRows,
+        maxColumnLength  : fromJS(maxColumnLength),
+        columnsAlignment : fromJS(columnsAlignment),
         rowCount,
         columnCount,
       });
