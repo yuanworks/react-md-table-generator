@@ -37,10 +37,13 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [x] Add SASS support
 - [x] Add immutable
 - [x] Deploy to EC9
+- [ ] Buy domain for deployment
+- [ ] Set SSL
 
 ### Tasks
 - [x] Create "table" JSON object
 - [ ] Save redux to local storage (debounced)
+- [ ] Try Redux Toolkit
 - [x] Create redux boilerplate
 - [x] Keyboard control (tab + shift tab for left-right, down/up keyboard)
 - [x] css for input + cell similar
@@ -63,6 +66,7 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Add undo / redo
 - [x] Insert at position for rows/column
 - [x] Remove input bar / delete / add column icons when unfocusing table
+- [ ] Import CSV
 
 ### Main Editor
 - [x] Movement up/down with CTRL/CMD key held
@@ -76,6 +80,8 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [x] Button component
 - [x] Add alignment icons
 - [ ] Move to CSS Modules ?
+- [ ] Add night theme
+- [x] Add windowed/fullscreen support
 
 ### CSS
 - [x] Column view for panes
@@ -88,13 +94,14 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Util unit tests ?
 - [ ] CI tests + coverage
 
-### Issues / bugs
+### Known Issues / Bugs
 - [x] Chrome -> Enters add newlines
 - [ ] Firefox / Chrome works differently (spaces and enters)
 - [ ] Check firefox
 - [ ] Check safari/opera
 - [ ] Check IE
 - [ ] Deleting all text inside a cell on chrome sometimes doesn't trigger onChange event
+- [ ] Irregular icons such as emojis or chinese characters break the fixed-width tables
 
 ## LICENSE
 

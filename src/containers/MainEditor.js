@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import classnames from 'classnames';
 
 import * as TableActions from '../redux/actions/TableActions';
 import { TABLE_SAMPLE } from '../constants/TableConstants';
+import * as SettingsSelectors from '../redux/selectors/SettingsSelectors';
 
 import Table from "../components/Table";
 import MarkdownTable from "../components/MarkdownTable";
@@ -11,6 +13,7 @@ import '../styles/MainEditor.scss';
 import CellValueInput from '../components/CellValueInput';
 import AlignButton from '../components/toolbar/AlignButton';
 import AdjustWidthButton from '../components/toolbar/AdjustWidthButton';
+import ExitFullscreenButton from '../components/toolbar/ExitFullscreenButton';
 
 export default function MainEditor() {
 
@@ -41,19 +44,27 @@ export default function MainEditor() {
     }
   }
 
+  const isFullscreen = useSelector(SettingsSelectors.isFullscreen());
+
   return (
-    <div className='main-editor'>
+    <div className={classnames('main-editor', {'main-editor-windowed': !isFullscreen})}>
 
       <div className='toolbar'>
-        <CellValueInput />
+        
+        <div className='main-buttons'>
+          <CellValueInput />
 
-        <button onClick={AddCode}>Code</button>
+          <button onClick={AddCode}>Code</button>
 
-        <AlignButton alignment='left' />
-        <AlignButton alignment='center' />
-        <AlignButton alignment='right' />
+          <AlignButton alignment='left' />
+          <AlignButton alignment='center' />
+          <AlignButton alignment='right' />
 
-        <AdjustWidthButton />
+          <AdjustWidthButton />
+        </div>
+
+        <ExitFullscreenButton />
+        
       </div>
 
       <div className='pane-view'>
