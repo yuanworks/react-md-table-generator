@@ -11,6 +11,6 @@ export default function CellValueInput() {
   const value = useSelector(TableSelectors.getEditingCellValue({ removeLastBR: true }));
 
   return (
-    <input className='cell-value-input' value={value || ''} onChange={editCell} />
+    <input className='cell-value-input' value={value || ''} onChange={editCell} disabled={!value} />
   );
 }

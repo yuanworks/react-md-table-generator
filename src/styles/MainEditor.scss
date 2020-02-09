@@ -13,6 +13,14 @@
     font-size: 14px;
     padding: 4px;
     font-family: inherit;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    line-height: 22px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0px 2px rgba(161, 176, 253, 0.68);
+    }  
   }
 
   .pane-view {
