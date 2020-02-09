@@ -20,6 +20,12 @@ npm start
 
 The server will start on `http://localhost:3003`.
 
+## Rationale
+
+This project is built using React + Redux hooks. It is my first project moving away from Class Components into Functional.
+
+Building a good table generator is difficult because of ContentEditable's unexpected and slightly unpredictable results, especially across browsers.
+
 ## TO DO LIST
 
 ### Misc
@@ -68,6 +74,8 @@ The server will start on `http://localhost:3003`.
 
 ### Layout
 - [x] Button component
+- [x] Add alignment icons
+- [ ] Move to CSS Modules ?
 
 ### CSS
 - [x] Column view for panes
@@ -90,7 +98,7 @@ The server will start on `http://localhost:3003`.
 
 ## LICENSE
 
-TBD.
+MIT License.
 
 Test Table:
 

@@ -43,14 +43,18 @@ export default function MainEditor() {
 
   return (
     <div className='main-editor'>
-      <CellValueInput />
-      <button onClick={AddCode}>Code</button>
 
-      <AlignButton alignment='left' />
-      <AlignButton alignment='center' />
-      <AlignButton alignment='right' />
+      <div className='toolbar'>
+        <CellValueInput />
 
-      <AdjustWidthButton />
+        <button onClick={AddCode}>Code</button>
+
+        <AlignButton alignment='left' />
+        <AlignButton alignment='center' />
+        <AlignButton alignment='right' />
+
+        <AdjustWidthButton />
+      </div>
 
       <div className='pane-view'>
         <div className='editor-pane' ref={editorPaneRef} onMouseDown={clearActiveCell}><Table /></div>
