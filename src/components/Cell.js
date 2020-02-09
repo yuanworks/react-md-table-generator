@@ -12,10 +12,11 @@ export default function Cell({ rowIndex, columnIndex }) {
   const value = useSelector(TableSelectors.getCellValue(rowIndex, columnIndex));
   const unescapedString = TableUtil.unescapeMarkdown(value);
   
-  const editingCell = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
-  const isExtraCell = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
+  const editingCell     = useSelector(TableSelectors.isEditingCell(rowIndex, columnIndex));
+  const isExtraCell     = useSelector(TableSelectors.isExtraCell(rowIndex, columnIndex));
   const columnAlignment = useSelector(TableSelectors.getColumnAlignment(columnIndex));
-  
+  const cellSelected    = useSelector(TableSelectors.isCellSelected(rowIndex, columnIndex));
+
   const dispatch         = useDispatch();
   const editCell         = e => dispatch(TableActions.editCell(rowIndex, columnIndex, TableUtil.htmlToMarkdown(e.target.value), true));
   const moveActiveCell  = direction => dispatch(TableActions.moveActiveCell(direction));
@@ -69,7 +70,7 @@ export default function Cell({ rowIndex, columnIndex }) {
         onChange={editCell}
         onFocus={setActiveCell}
         /*onBlur={clearEditingCell}*/
-        className={classnames('cell-value', { ['align-'+columnAlignment]: columnAlignment })}
+        className={classnames('cell-value', { ['align-'+columnAlignment]: columnAlignment, 'cell-focused': cellSelected && !editingCell })}
         onKeyDown={handleKeyPress}
       />
     </td>

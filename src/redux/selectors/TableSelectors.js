@@ -34,6 +34,10 @@ export const isEditingCell = (rowIndex, columnIndex) => function(state) {
   return state.table.get(TABLE.State.activeRow) === rowIndex && state.table.get(TABLE.State.activeColumn) === columnIndex && state.table.get(TABLE.State.editingCell)
 };
 
+export const isCellSelected = (rowIndex, columnIndex) => function(state) {
+  return state.table.get(TABLE.State.activeRow) === rowIndex && state.table.get(TABLE.State.activeColumn) === columnIndex;
+}
+
 export const isEditingRow = rowIndex => function(state) {
   return rowIndex !== undefined && state.table.get(TABLE.State.activeRow) === rowIndex;
 };

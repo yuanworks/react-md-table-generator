@@ -67,6 +67,12 @@ export default function table(state = initialState, action) {
       });
     }
 
+    case 'TABLE_FOCUS_TOOLBAR_INPUT':
+      return state.set('editingCell', false);
+
+    case 'TABLE_FOCUS_CELL_INPUT': 
+      return state.set('editingCell', true);
+
     case 'TABLE_FORMAT_ACTIVE_CELL': {
 
       const { start, end, tag } = action.payload;
@@ -154,7 +160,7 @@ export default function table(state = initialState, action) {
     
     case 'TABLE_SET_ACTIVE_CELL': {
       const { activeRow, activeColumn } = payload;
-      return state.merge({ activeRow, activeColumn });
+      return state.merge({ activeRow, activeColumn, editingCell: true });
     }
 
     case 'TABLE_MOVE_ACTIVE_CELL': {

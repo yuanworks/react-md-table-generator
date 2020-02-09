@@ -26,6 +26,17 @@ table.editable {
       width: 100%;
       padding: 8px 14px;
       line-height: 21px;
+
+      &:focus {
+        box-shadow: 0 0 0px 2px #3255f1;
+        outline: 0;
+      }
+    }
+
+    .cell-focused {
+      box-shadow: 0px 0 2px 2px #6981f3;
+      z-index: 1000;
+      position: relative;
     }
 
     .align {

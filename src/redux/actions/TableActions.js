@@ -8,6 +8,14 @@ export const editActiveCell = value => ({
   payload : { value }
 });
 
+export const focusToolbarInput = () => ({
+  type: 'TABLE_FOCUS_TOOLBAR_INPUT',
+});
+
+export const focusCellInput = () => ({
+  type: 'TABLE_FOCUS_CELL_INPUT',
+});
+
 export const formatActiveCell = (start, end, tag) => ({
   type    : 'TABLE_FORMAT_ACTIVE_CELL',
   payload : { start, end, tag }
