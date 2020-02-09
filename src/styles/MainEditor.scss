@@ -1,6 +1,9 @@
 .main-editor {
 
   height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
 
   .toolbar {
     background-color: #e8e8e8;
@@ -31,7 +34,7 @@
 
   .pane-view {
     display: flex;
-    height: 100%;
+    flex: 1;
 
     .editor-pane {
       flex: 1;
@@ -54,6 +57,5 @@
     margin: 20px auto;
     border-radius: 4px;
     border: 2px solid #a2a2a2;
-    overflow: auto;
   }
 }

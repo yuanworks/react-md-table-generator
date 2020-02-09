@@ -82,6 +82,7 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Move to CSS Modules ?
 - [ ] Add night theme
 - [x] Add windowed/fullscreen support
+- [ ] Fixed toolbar (fullscreen mode)
 
 ### CSS
 - [x] Column view for panes
