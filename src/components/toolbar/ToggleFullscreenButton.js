@@ -7,7 +7,7 @@ import * as SettingsSelectors from '../../redux/selectors/SettingsSelectors';
 import Button from '../layout/Button';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 
-export default function ExitFullscreenButton() {
+export default function ToggleFullscreenButton({ ...props }) {
 
   const dispatch = useDispatch();
   const setFullscreen = () => dispatch(SettingsActions.setFullscreen(!isFullscreen));
@@ -18,7 +18,7 @@ export default function ExitFullscreenButton() {
   const text = isFullscreen ? 'Exit Fullscreen' : 'Fullscreen Mode';
 
   return (
-    <Button type='flat' icon={Icon} onClick={setFullscreen}>
+    <Button icon={Icon} onClick={setFullscreen} {...props}>
       { text }
     </Button>
   )

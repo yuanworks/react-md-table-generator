@@ -70,9 +70,31 @@
   padding: 0.5rem 1rem;
 }
 
-.type-flat {
-  font-weight: 400;
-  border: 1px solid #c5c5c5;
-  background-color: #e8e8e8;
-  color: $lightgray_60;
-}
+.type {
+  
+  &-flat {
+    font-weight: 400;
+    border-color: #c5c5c5;
+    background-color: #e8e8e8;
+    color: $lightgray_60;
+  }
+
+  &-colorful {
+    background-color: #2d4ff1;
+    color: white;
+    border-color: #1638d8;
+
+    .icon {
+      background-color: #4666fb;
+      color: white;
+      border-color: #1638d8;
+    }
+  }
+} /* --.type */
+
+.size {
+  
+  &-medium {
+    font-size: 1rem;
+  }
+} /* --.size */

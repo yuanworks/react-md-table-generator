@@ -2,10 +2,14 @@
 
 .main-editor {
 
+  background-color: white;
   height: 100%;
   overflow: auto;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  top: 0;
+  width: 100%;
 
   .toolbar {
     background-color: $lightgray_10;
@@ -54,9 +58,10 @@
   }
 
   &-windowed {
+    position: relative;
     height: 60vh;
-    width: 90vw;
-    max-width: 1200px;
+    width: 95%;
+    max-width: 1400px;
     margin: 20px auto;
     border-radius: 4px;
     border: 2px solid $lightgray_50;

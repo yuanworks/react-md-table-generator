@@ -13,7 +13,7 @@ import '../styles/MainEditor.scss';
 import CellValueInput from '../components/CellValueInput';
 import AlignButton from '../components/toolbar/AlignButton';
 import AdjustWidthButton from '../components/toolbar/AdjustWidthButton';
-import ExitFullscreenButton from '../components/toolbar/ExitFullscreenButton';
+import ToggleFullscreenButton from '../components/toolbar/ToggleFullscreenButton';
 
 export default function MainEditor() {
 
@@ -63,7 +63,7 @@ export default function MainEditor() {
           <AdjustWidthButton />
         </div>
 
-        <ExitFullscreenButton />
+        <ToggleFullscreenButton type='flat' />
         
       </div>
 
