@@ -11,7 +11,7 @@ export default function MainIntro() {
       <h1>Markdown Tables Generator</h1>
       <p>Easily generate Markdown tables without being an ASCII art professional. Built using React and Redux.</p>
       <p>
-        <ToggleFullscreenButton type='colorful shadow' size='medium' />
+        <ToggleFullscreenButton type='colorful highlight' size='medium' />
         { /*
           [ Import Data ]
           [ Load Sample Data ]
