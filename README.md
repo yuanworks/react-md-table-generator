@@ -79,13 +79,14 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 ### Layout
 - [x] Button component
 - [x] Add alignment icons
-- [ ] Move to CSS Modules ?
-- [ ] Add night theme
 - [x] Add windowed/fullscreen support
 - [ ] Fixed toolbar (fullscreen mode)
 
 ### CSS
 - [x] Column view for panes
+- [-] Add SASS color constants
+- [ ] Move to CSS Modules ?
+- [ ] Add night theme
 
 ### Parser
 - [x] Parse text alignment

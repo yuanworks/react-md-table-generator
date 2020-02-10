@@ -25,7 +25,7 @@ export default function DeleteCell({ rowIndex, columnIndex }) {
 
   const deleteIcon = visible && (
     <animated.div style={opacity}>
-      <TiDelete className='delete-icon' size={24} color='#c3c3c3' onClick={handleDelete} />
+      <TiDelete className='delete-icon' size={24} onClick={handleDelete} />
     </animated.div>
   );
 
