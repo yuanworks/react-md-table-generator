@@ -16,6 +16,9 @@
     border-bottom: 2px solid $lightgray_20;
     display: flex;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
 
     .main-buttons {
       flex: 1;
@@ -41,6 +44,7 @@
   .pane-view {
     display: flex;
     flex: 1;
+    margin-top: 42px;
 
     .editor-pane {
       flex: 1;
@@ -66,5 +70,13 @@
     border-radius: 4px;
     border: 1px solid $lightgray_60;
     box-shadow: 0px 0px 6px 2px rgba(0,0,0,0.2);
+    
+    .toolbar {
+      position: relative;
+    }
+
+    .pane-view {
+      margin-top: 0;
+    }
   }
 }

@@ -34,6 +34,7 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Set SSL
 - [ ] Save redux to local storage (debounced)
 - [ ] Try Redux Toolkit
+- [ ] Add bottoms links to Github, React, etc.
 
 ### Main Editor
 - [ ] Render markdown->html inside cells
@@ -43,7 +44,8 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 ### Formatting
 
 ### Layout
-- [ ] Fixed toolbar (fullscreen mode)
+- [x] Fixed toolbar (fullscreen mode)
+- [ ] Add zoom in/out
 
 ### CSS
 - [-] Add SASS color constants
@@ -51,7 +53,7 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Add night theme
 
 ### Parser
-- [x] Fall-back if parsing has errors
+- [ ] Fall-back if parsing has errors
 
 ### Tests
 - [x] Set puppeteer for E2E testing
