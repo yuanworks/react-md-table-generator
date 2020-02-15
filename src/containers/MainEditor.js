@@ -14,6 +14,7 @@ import CellValueInput from '../components/CellValueInput';
 import AlignButton from '../components/toolbar/AlignButton';
 import AdjustWidthButton from '../components/toolbar/AdjustWidthButton';
 import ToggleFullscreenButton from '../components/toolbar/ToggleFullscreenButton';
+import ImportMarkdownModal from './ImportMarkdownModal';
 
 export default function MainEditor() {
 
@@ -71,6 +72,8 @@ export default function MainEditor() {
         <div className='editor-pane' ref={editorPaneRef} onMouseDown={clearActiveCell}><Table /></div>
         <div className='markdown-pane' ref={markdownPaneRef} onMouseDown={clearActiveCell}><MarkdownTable /></div>
       </div>
+      
+      <ImportMarkdownModal />
     </div>
   );
 }

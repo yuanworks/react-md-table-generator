@@ -3,6 +3,7 @@ import classnames from 'classnames';
 
 import Layout from './Layout.module.scss';
 import ToggleFullscreenButton from '../components/toolbar/ToggleFullscreenButton';
+import ImportMarkdownButton from '../components/toolbar/ImportMarkdownButton';
 
 export default function MainIntro() {
 
@@ -12,8 +13,8 @@ export default function MainIntro() {
       <p>Easily generate Markdown tables without being an ASCII art professional. Built using React and Redux.</p>
       <p>
         <ToggleFullscreenButton type='colorful highlight' size='medium' />
+        <ImportMarkdownButton type='colorful highlight' size='medium' />
         { /*
-          [ Import Data ]
           [ Load Sample Data ]
         */}
       </p>

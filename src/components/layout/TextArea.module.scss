@@ -1,0 +1,20 @@
+@import '../../styles/colors.scss';
+
+.textArea {
+  display: block;
+  border: 1px solid $lightgray_30;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: initial;
+  padding: 8px;
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0px 2px rgba(161, 176, 253, 0.68);
+
+    &::placeholder {
+      color: transparent;
+      transition: 0.2s;
+    }
+  }
+}
