@@ -39,7 +39,8 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 ### Main Editor
 - [ ] Render markdown->html inside cells
 - [ ] Add undo / redo through Redux
-- [ ] Import CSV
+- [ ] Import -> clear after right import
+- [ ] Import -> fallback for errors
 
 ### Formatting
 

@@ -59,7 +59,7 @@ export function parseMarkdown(markdown) {
     let rowIndex = 0;
 
     parsedRow.forEach(row => {
-      const trimRow = row.trim();
+      const trimRow = row; //.trim();
       
       if (trimRow) {
         rows[rows.length -1].push(trimRow);

@@ -5,7 +5,7 @@ import * as TableActions from '../redux/actions/TableActions';
 import * as SettingsActions from '../redux/actions/SettingsActions';
 import * as SettingsSelectors from '../redux/selectors/SettingsSelectors';
 
-import { Modal, ModalFooter, ModalBody } from '../components/layout/Modal';
+import { Modal, ModalFooter, ModalBody, ModalHeader } from '../components/layout/Modal';
 import TextArea from '../components/layout/TextArea';
 import Button from '../components/layout/Button';
 import styles from './Layout.module.scss';
@@ -32,6 +32,7 @@ export default function ImportMarkdownModal() {
 
   return (
     <Modal isOpen={isOpen} className={styles.importMarkdownModal}>
+      <ModalHeader toggle={hideModal}>Import Markdown</ModalHeader>
       <ModalBody>
         <p>Paste or type the table markdown below.</p>
         <TextArea className={styles.importMarkdownTextArea} rows={10} placeholder={IMPORT_TEXT_PLACEHOLDER} value={value} onChange={changeValue} />
