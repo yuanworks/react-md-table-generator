@@ -41,6 +41,7 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Add undo / redo through Redux
 - [ ] Import -> clear after right import
 - [ ] Import -> fallback for errors
+- [ ] Render emojis/CJK characters in smaller width/size
 
 ### Formatting
 

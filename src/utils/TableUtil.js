@@ -59,9 +59,9 @@ export function parseMarkdown(markdown) {
     let rowIndex = 0;
 
     parsedRow.forEach(row => {
-      const trimRow = row; //.trim();
+      const trimRow = row.trim();
       
-      if (trimRow) {
+      if (row.length > 0) {
         rows[rows.length -1].push(trimRow);
         maxColumnLength[rowIndex] = Math.max(trimRow.length, maxColumnLength[rowIndex] || 0);
 

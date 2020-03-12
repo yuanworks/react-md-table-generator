@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { IoMdClose } from 'react-icons/io';
+
 import styles from "./Modal.module.scss";
 
 export function Modal({ isOpen, className, children }) {
