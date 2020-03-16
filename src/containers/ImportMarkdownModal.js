@@ -31,7 +31,7 @@ export default function ImportMarkdownModal() {
   const changeValue = e => setValue(e.target.value);
 
   return (
-    <Modal isOpen={isOpen} className={styles.importMarkdownModal}>
+    <Modal isOpen={isOpen} className={styles.importMarkdownModal} toggle={hideModal}>
       <ModalHeader toggle={hideModal}>Import Markdown</ModalHeader>
       <ModalBody>
         <p>Paste or type the table markdown below.</p>

@@ -30,10 +30,9 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 
 ### Misc
 
-- [ ] Buy domain for deployment
 - [ ] Set SSL
 - [ ] Save redux to local storage (debounced)
-- [ ] Try Redux Toolkit
+- [ ] Try Redux Toolkit / immer
 - [ ] Add bottoms links to Github, React, etc.
 
 ### Main Editor
