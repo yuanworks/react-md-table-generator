@@ -2,7 +2,7 @@
 
 Easily create Markdown Tables without having to be an Ascii Art professional.
 
-[Test it out here](https://master.d3ehyc8gjtvav9.amplifyapp.com/).
+Deployed in Vercel: https://react-md-table-generator.vercel.app/
 
 ![react_md_table](https://user-images.githubusercontent.com/3508123/66262015-18d2c680-e813-11e9-8885-29439a869849.gif)
 
@@ -13,14 +13,14 @@ yarn install
 yarn start
 ```
 
-Or,
+Or
 
 ```
 npm install
 npm start
 ```
 
-The server will start on `http://localhost:3003`.
+The server will be running on http://localhost:3003
 
 ## Rationale
 
@@ -32,7 +32,7 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 
 ### Misc
 
-- [ ] Set SSL
+- [x] deploy to Vercel
 - [ ] Save redux to local storage (debounced)
 - [ ] Try Redux Toolkit / immer
 - [ ] Add bottoms links to Github, React, etc.
@@ -42,7 +42,8 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Add undo / redo through Redux
 - [ ] Import -> clear after right import
 - [ ] Import -> fallback for errors
-- [ ] Render emojis/CJK characters in smaller width/size
+- [ ] Render emojis/CJK characters in smaller width/size <- seems like this is impossible
+- [ ] Copy to clipboard
 
 ### Formatting
 
@@ -51,9 +52,9 @@ Building a good table generator is difficult because of ContentEditable's unexpe
 - [ ] Add zoom in/out
 
 ### CSS
-- [-] Add SASS color constants
+- [-] Add SASS color constants <- remove because it should just be CSS vars
 - [ ] Move to CSS Modules ?
-- [ ] Add night theme
+- [ ] Add dark mode
 
 ### Parser
 - [ ] Fall-back if parsing has errors

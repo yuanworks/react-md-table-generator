@@ -71,12 +71,13 @@ table.editable {
     &.delete-cell {
       border: none;
       background-color: white;
-      min-width: 28px;
-      text-align: center;
+      min-width: 36px;
 
       .delete-icon {
         cursor: pointer;
         color: $lightgray_30;
+        display: block;
+        margin: 0 auto;
       }
     }
 
