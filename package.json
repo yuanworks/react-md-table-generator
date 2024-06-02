@@ -5,16 +5,16 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "immutable": "^4.0.0-rc.12",
-    "node-sass": "^4.13.0",
     "prop-types": "^15.7.2",
-    "react": "^16.13.0",
+    "react": "^18.3.1",
     "react-contenteditable": "^3.3.3",
-    "react-dom": "^16.13.0",
+    "react-dom": "^18.3.1",
     "react-icons": "^3.9.0",
     "react-redux": "^7.2.0",
-    "react-scripts": "3.4.0",
+    "react-scripts": "5.0.1",
     "react-spring": "^8.0.27",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "sass": "^1.77.4"
   },
   "scripts": {
     "start": "PORT=3003 react-scripts start",
